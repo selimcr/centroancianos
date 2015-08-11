@@ -1,0 +1,10 @@
+services:
+#    tecnotek_asilo.example:
+#        class: Tecnotek\Bundle\AsiloBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    form.type.patient:
+        class: Tecnotek\Bundle\AsiloBundle\Form\PatientForm
+        arguments: ["@security.context",'@doctrine.orm.entity_manager']
+        tags:
+            - { name: form.type, alias: patient_form }

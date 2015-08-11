@@ -1,0 +1,38 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: TecnotekAsiloBundle:Public:index }
+
+_admin_secured:
+    resource: "@TecnotekAsiloBundle/Controller/SecuredController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin:
+    resource: "@TecnotekAsiloBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_patients:
+    resource: "@TecnotekAsiloBundle/Controller/PatientsController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_sports:
+    resource: "@TecnotekAsiloBundle/Controller/SportsController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_pentions:
+    resource: "@TecnotekAsiloBundle/Controller/PentionsController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_patients_pentions:
+    resource: "@TecnotekAsiloBundle/Controller/PatientsPentionsController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_activities:
+    resource: "@TecnotekAsiloBundle/Controller/ActivitiesController.php"
+    type:     annotation
+    prefix:   /admin

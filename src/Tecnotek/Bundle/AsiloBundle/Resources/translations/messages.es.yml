@@ -1,0 +1,129 @@
+# General #
+site.title: Centro Diurno Pilar Gamboa
+header.title: Centro Diurno Pilar Gamboa
+contact.us: Contáctenos
+services: Servicios
+about.us: Quiénes Somos
+admin.site: Sitio Administrativo
+
+main.title: Centro de Ancianos Pilar Gamboa
+main.msg: Nuestra institución se especializa en la atención del Adulto Mayor, prestando servicios que les garanticen mantener y mejorar su capacidad física, mental, emocional, social y espíritual, que les permita llevar una buena calidad de vida, haciéndolos sentir libres e independientes en esta etapa de sus vidas.
+at.your.service: Estamos Para Servirle
+services.basics: Servicios Básicos
+services.basics.msg: Apoyo de un gran equipo, alojamiento, alimentación, aseo, lavandería y muchos más.
+services.activities: Distintas Actividades
+services.activities.msg: Manualidades, Bingos, Terapias Físicas entre otras forman parte de nuestras actividades semanales.
+service.health: Servicios de Salud
+service.health.msg: Enfermería permanente, médico geriatra, nutrición, fisioterapia y más porque su salud y bienestar es lo más importante.
+contact.us.msg: ¿Dudas o inquietudes sobre nuestros servicios? Llámanos o envíanos un correo electrónico y te contáctaremos tan pronto como sea posible.
+our.services: Nuestros Servicios
+back.to.start: Volver al Inicio
+ready.for.contact: ¿Necesita más información?
+find.out.more: ¿Quieres conocer más?
+we.got.what.your.need: Tenemos lo que necesitas!
+we.got.what.your.need.msg: Somos un equipo de profesionales capacitados en atender todas las necesidades del adulto mayor. Nuestro personal es calificado con mucha calidad humana y gran vocación para hacer felices a todos aquellos abuelos que conviven en nuestra institución.
+
+#Admin Site
+username: Nombre de Usuario
+password: Contraseña
+login: Ingresar
+forgot.password: Olvidó su Contraseña
+remember.me: Recuérdame
+bad.credentials: El nombre de usuario y contraseña ingresados no coinciden
+admin.site: Sitio Administrativo
+my.profile: Mi Cuenta
+log.out: Salir
+dashboard: Dashboard
+
+# Menu
+home: Inicio
+forms: Mantenimientos
+
+# Actions
+actions: Acciones
+save: Guardar
+reset: Limpiar
+new: Nuevo
+cancel: Cancelar
+edit: Editar
+create: Crear
+add: Agregar
+
+saving.success: Se ha guardado la información correctamente
+
+# Sports
+sports: Deportes
+create.sport: Crear Deporte
+edit.sport: Editar Deporte
+sport.save.success: El deporte fue guardado correctamente
+sport.delete.success: El deporte fue eliminado correctamente
+confirm.sport.delete: ¿Está seguro que desea eliminar este deporte?
+
+# Patients
+patients: Pacientes
+patient.main.info: Información Principal
+patient.birthdate.note: Ingrese la fecha de nacimiento con el formato MM/dd/YYYY
+patient.admissionDate.note: Ingrese la fecha de ingreso con el formato MM/dd/YYYY
+create.patient: Crear Paciente
+patient: Paciente
+
+# Patients Pentions
+patients.pentions: Pensiones de Pacientes
+confirm.patient.pention.delete: ¿Está seguro que desea eliminar esta Pensión?
+patient.pention.delete.success: La Pensión fue eliminada correctamente
+edit.patients.pentions: Editar Pensión
+patient.pention.save.success: La Pensión fue guardada correctamente
+
+# Pentions
+pention: Pensión
+pentions: Pensiones
+create.pention: Crear Pensión
+edit.pention: Editar Pensión
+pention.save.success: La pensión fue guardada correctamente
+pention.delete.success: La pensión fue eliminada correctamente
+confirm.pention.delete: ¿Está seguro que desea eliminar esta pensión?
+add.pention: Agregar Pensión
+add.pention.success: La pensión fue agregada correctamente
+remove.pention: ¿Está seguro que desea eliminar esta pensión del paciente?
+remove.pention.sucess: La pensión fue eliminada correctamente
+
+
+# Fields
+name: Nombre
+lastname: Primer Apellido
+secondSurname: Segundo Apellido
+birthdate: Fecha Nacimiento
+documentId: Cédula
+nacionality: Nacionalidad
+state: Provincia/Estado
+admission.date: Fecha Ingreso
+weight: Peso (Kg)
+brachialCircumference: Circunferencia Braquial (CB)
+calfCircumference: Circunferencia Pantorrilla (CP)
+kneeHeight: Altura Rodilla (AR)
+height: Talla (cm)
+imc: Indicé de Masa Corporal (IMC)
+nutritional.state: Estado Nutritional
+scholarity: Escolaridad
+address: Lugar en que Vive
+live.with: Vive Con
+important.phones: Teléfonos Importantes
+civil.status: Estado Civil
+laterality: Lateralidad
+gender: Género
+amount: Monto
+yes: Si
+no: No
+
+#
+activities.and.others: Actividades y Otros
+select.activity.type: Seleccione el tipo de actividades o aspectos que desea revisar
+select.activity: Seleccionar Actividad
+activities.or.aspects: Actividades | Aspectos
+elements: Elementos
+
+#Validations
+review.and.fix.fields: Por favor revise y corrija los siguientes errores antes de guardar
+validation.not.empty: Este campo es requerido y no puede estar vacío
+validation.not.found: El objeto no fue encontrado
+validation.only.digits: Este campo sólo puede contener dígitos
