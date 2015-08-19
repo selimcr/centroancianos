@@ -20,18 +20,20 @@ class ActivitiesController extends Controller
     /**
      * Return a List of Patients paginated for Bootstrap Table
      *
-     * @Route("/activities/types/{typeId}/form", name="_activity_get_form")
+     * @Route("/activities/types/{typeId}/{gender}/form", name="_activity_get_form")
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
-    public function getActivityFormAction($typeId)
+    public function getActivityFormAction($typeId, $gender)
     {
         $logger = $this->get('logger');
         try {
             $em = $this->getDoctrine()->getManager();
             $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find($typeId);
             return $this->render('TecnotekAsiloBundle:Admin:activities/form.html.twig',
-                array('activityType' => $activityType));
+                array(
+                    'activityType' => $activityType,
+                    'gender' => $gender));
         } catch (Exception $e) {
             $info = toString($e);
             $logger->err('Activity::getActivityFormAction [' . $info . "]");
@@ -61,9 +63,9 @@ class ActivitiesController extends Controller
             // Get required entities catalog
             $cataloges = array();
             foreach ($activity->getItems() as $item) {
-                if ($item->getType() == 2) {
+                if ($item->getType() == 2 || $item->getType() == 4) {
                     if (!array_key_exists($item->getReferencedEntity(), $cataloges)) {
-                        $entities = $em->getRepository("TecnotekAsiloBundle:" . $item->getReferencedEntity())->findAll();
+                        $entities = $em->getRepository('TecnotekAsiloBundle:Catalog\\' . $item->getReferencedEntity())->findAll();
                         $cataloges[$item->getReferencedEntity()] = $entities;
                     }
                 }

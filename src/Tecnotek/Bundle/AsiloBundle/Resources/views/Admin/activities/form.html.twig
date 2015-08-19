@@ -5,9 +5,11 @@
             <div class="panel-body without-padding">
                 <ul class="nav nav-pills nav-stacked nav-squared">
                     {% for activity in activityType.activities %}
+                        {% if activity.exclusiveGender == null or activity.exclusiveGender == gender %}
                         <li class="{{ loop.index == 1? 'active ':'' }}activity-li">
                             <a class="activity" rel="{{ activity.id }}" href="#">{{ activity }}</a>
                         </li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
             </div>

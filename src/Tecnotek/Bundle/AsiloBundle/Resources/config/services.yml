@@ -8,3 +8,11 @@ services:
         arguments: ["@security.context",'@doctrine.orm.entity_manager']
         tags:
             - { name: form.type, alias: patient_form }
+
+    tecnotek.twig.items.extension:
+              class: Tecnotek\Bundle\AsiloBundle\Twig\Extensions\ItemsExtension
+              tags:
+                  - { name: twig.extension }
+              arguments:
+                  em: "@doctrine.orm.entity_manager"
+                  translator: "@translator"

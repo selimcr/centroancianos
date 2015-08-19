@@ -4,35 +4,7 @@
         {% for item in activity.items %}
             <div class="col-md-4 form-group control-group activity-item">
                 <p class="item-title"><span>{{ item }}</span></p>
-                {% if item.type == 1%}
-                    {% if item.id in patientValues|keys %}
-                        {% set value = patientValues[item.id] %}
-                    {% else %}
-                        {% set value = '0' %}
-                    {% endif %}
-                    <select class="item-element" item-id="{{ item.id }}">
-                        <option value="1" {{ value=="1"? 'selected=':'' }}>{{ 'yes'|trans }}</option>
-                        <option value="0" {{ value=="0"? 'selected=':'' }}>{{ 'no'|trans }}</option>
-                    </select>
-                {% elseif item.type == 2 %}
-                    {% if item.id in patientValues|keys %}
-                        {% set value = patientValues[item.id] %}
-                    {% else %}
-                        {% set value = '' %}
-                    {% endif %}
-                    {% set entities = cataloges[item.referencedEntity] %}
-                    {% for entity in entities %}
-                        <input type="checkbox" class="item-element" item-id="{{ item.id }}"
-                               {{ '[' ~ entity.id ~ ']' in value? 'checked="checked"':'' }} value="{{ entity.id }}"> {{ entity }}
-                    {% endfor %}
-                {% elseif item.type == 3 %}
-                    {% if item.id in patientValues|keys %}
-                        {% set value = patientValues[item.id] %}
-                    {% else %}
-                        {% set value = '' %}
-                    {% endif %}
-                    <textarea class="item-element" item-id="{{ item.id }}">{{ value }}</textarea>
-                {% endif %}
+                {{ renderItem(item, patientValues, cataloges)|raw }}
             </div>
         {% endfor %}
         </form>

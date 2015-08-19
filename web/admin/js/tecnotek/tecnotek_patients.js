@@ -7,16 +7,18 @@ Tecnotek.Patients = {
                 value + '</div>';
         },
         updateActivitiesForm: function () {
+            Tecnotek.showPleaseWait();
             var url = Tecnotek.UI.urls['get-activity-form'];
             url = url.replace('xid', $("#activityType").val());
             $( "#activityContainer" ).load( url );
         },
-        initActivitiesEvents: function(){
+        initActivitiesEvents: function() {
             $(".activity").click(function(e){
                 e.preventDefault();
                 Tecnotek.Patients.Edit.loadActivityItems($(this));
             });
             $(".activity-li.active>a").click();
+            Tecnotek.hidePleaseWait();
         },
         initItemsEvents: function(){
             $("select.item-element").change(function(e){
@@ -37,6 +39,15 @@ Tecnotek.Patients = {
                 });
                 Tecnotek.Patients.Edit.savePatientItem(itemId, value);
             });
+            $(".timeinput").blur(function(e){
+                var itemId = $(this).attr('item-id');
+                var value = $(this).val();
+                Tecnotek.Patients.Edit.savePatientItem(itemId, value);
+            });
+            $('.timepicker').datetimepicker({
+                format: 'LT'
+            });
+            Tecnotek.hidePleaseWait();
         },
         savePatientItem: function(itemId, value){
             Tecnotek.ajaxCall(Tecnotek.UI.urls['save-patient-item-value'], {
@@ -57,6 +68,7 @@ Tecnotek.Patients = {
             $( "#itemsContainer").html("");
             var url = Tecnotek.UI.urls['get-activity-items'];
             url = url.replace('xid', id);
+            Tecnotek.showPleaseWait();
             $( "#itemsContainer" ).load( url );
             $(".activity-li").removeClass("active");
             $this.parent('li').addClass('active');

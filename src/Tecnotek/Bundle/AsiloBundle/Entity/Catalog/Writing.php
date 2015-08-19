@@ -1,6 +1,6 @@
 <?php
 
-namespace Tecnotek\Bundle\AsiloBundle\Entity;
+namespace Tecnotek\Bundle\AsiloBundle\Entity\Catalog;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,11 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table(name="tecnotek_sports")
- * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\SportRepository")
+ * @ORM\Table(name="tecnotek_writings")
+ * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\CatalogRepository")
  * @UniqueEntity("name")
  */
-class Sport
+class Writing
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -22,18 +22,12 @@ class Sport
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=30)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Patient", mappedBy="sports")
-     */
-    private $patients;
-
     public function __construct()
     {
-        $this->patients = new ArrayCollection();
     }
 
     public function getId(){
@@ -48,16 +42,6 @@ class Sport
     public function getName()
     {
         return $this->name;
-    }
-
-    public function setPatients($patients)
-    {
-        $this->patients = $patients;
-    }
-
-    public function getPatients()
-    {
-        return $this->patients;
     }
 
     public function __toString(){

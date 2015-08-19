@@ -55,9 +55,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $admin->getUserRoles()->add($roleAdmin);
         $manager->persist($admin);
 
-        /*** Create Sports ***/
-        $this->createSports($manager);
-
         /*** Create Marital Status ***/
         $this->createMaritalStatus($manager);
 
@@ -74,20 +71,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $this->createCatalogs($manager);
         $manager->flush();
     } // End of method: load
-
-    public function createSports(ObjectManager $manager){
-        $walk = new \Tecnotek\Bundle\AsiloBundle\Entity\Sport();
-        $walk->setName("Caminata");
-        $manager->persist($walk);
-
-        $swing = new \Tecnotek\Bundle\AsiloBundle\Entity\Sport();
-        $swing->setName("Natación");
-        $manager->persist($swing);
-
-        $relaxingExexcices = new \Tecnotek\Bundle\AsiloBundle\Entity\Sport();
-        $relaxingExexcices->setName("Ejercicios de Relajación");
-        $manager->persist($relaxingExexcices);
-    }
 
     public function createMaritalStatus(ObjectManager $manager){
         $viudo = new \Tecnotek\Bundle\AsiloBundle\Entity\MaritalStatus();
@@ -191,91 +174,197 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 
     public function createCatalogs(ObjectManager $manager)
     {
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Reading();
+        $walk = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Sport();
+        $walk->setName("Caminata");
+        $manager->persist($walk);
+        $swing = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Sport();
+        $swing->setName("Natación");
+        $manager->persist($swing);
+        $relaxingExexcices = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Sport();
+        $relaxingExexcices->setName("Ejercicios de Relajación");
+        $manager->persist($relaxingExexcices);
+
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Reading();
         $entity->setName("La Biblia");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Reading();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Reading();
         $entity->setName("Periódico");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Reading();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Reading();
         $entity->setName("Revistas");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Writing();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Writing();
         $entity->setName("Vivencias");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Writing();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Writing();
         $entity->setName("Oraciones");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Manuality();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Manuality();
         $entity->setName("Pintar");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Manuality();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Manuality();
         $entity->setName("Dibujar");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("Popular");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("Bolero");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("70's");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("80's");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("Romántica");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Music();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Music();
         $entity->setName("Cristiana");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Instrument();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Instrument();
         $entity->setName("Guitarra");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Instrument();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Instrument();
         $entity->setName("Pianola");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Instrument();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Instrument();
         $entity->setName("Maracas");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\EntertainmentActivity();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\EntertainmentActivity();
         $entity->setName("Charlas");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\EntertainmentActivity();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\EntertainmentActivity();
         $entity->setName("Fiestas");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\EntertainmentActivity();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\EntertainmentActivity();
         $entity->setName("Cine Forum");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\EntertainmentActivity();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\EntertainmentActivity();
         $entity->setName("Talleres");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\RoomGame();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\RoomGame();
         $entity->setName("Papi Futbol");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\RoomGame();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\RoomGame();
         $entity->setName("Ajedrez");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\RoomGame();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\RoomGame();
         $entity->setName("Cartas");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\RoomGame();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\RoomGame();
         $entity->setName("Bingo");
         $manager->persist($entity);
 
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Dance();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Dance();
         $entity->setName("Bolero");
         $manager->persist($entity);
-        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Dance();
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Dance();
         $entity->setName("Merengue");
         $manager->persist($entity);
 
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Religion();
+        $entity->setName("Católica");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Religion();
+        $entity->setName("Evangélica");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Religion();
+        $entity->setName("Protestante");
+        $manager->persist($entity);
+
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Ayudar a los demás");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Rezar el rosario");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Enseñar la Biblia");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Encomendarce al Señor");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Culto");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Hora Santa");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SpiritualActivity();
+        $entity->setName("Santa Misa");
+        $manager->persist($entity);
+
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SleepHabit();
+        $entity->setName("Suele levantarse");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SleepHabit();
+        $entity->setName("Necesita ir al baño varias veces");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SleepHabit();
+        $entity->setName("Durante el día duerme mucho");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\SleepHabit();
+        $entity->setName("Necesita dormir con la luz encendida");
+        $manager->persist($entity);
+
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Alcoholismo");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Cáncer");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Cardiopatía");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Cirrosis");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Cáncer de Seno");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Accidente Vascular Periférico");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Alzheimer");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Enfermedad Renal");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Sarampión");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Paperas");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Diabetes Mellitus");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Hipotiroidismo");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Hipertensión Arterial");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Diverticulitis");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Ulcera gastrica");
+        $manager->persist($entity);
+        $entity = new \Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Disease();
+        $entity->setName("Cáncer de Próstata");
+        $manager->persist($entity);
+
+
+
     }
-    } // End of Class
+} // End of Class

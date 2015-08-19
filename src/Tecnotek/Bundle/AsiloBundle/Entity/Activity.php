@@ -27,6 +27,13 @@ class Activity
     private $title;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="exclusive_gender", type="integer", nullable=true)
+     */
+    private $exclusiveGender;
+
+    /**
      * @ORM\ManyToOne(targetEntity="ActivityType", inversedBy="activities")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
@@ -53,6 +60,16 @@ class Activity
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function getExclusiveGender()
+    {
+        return $this->exclusiveGender;
+    }
+
+    public function setExclusiveGender($exclusiveGender)
+    {
+        $this->exclusiveGender = $exclusiveGender;
     }
 
     public function getActivityType()

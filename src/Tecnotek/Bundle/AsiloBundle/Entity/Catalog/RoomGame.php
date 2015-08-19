@@ -1,6 +1,6 @@
 <?php
 
-namespace Tecnotek\Bundle\AsiloBundle\Entity;
+namespace Tecnotek\Bundle\AsiloBundle\Entity\Catalog;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,11 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table(name="tecnotek_dances")
+ * @ORM\Table(name="tecnotek_room_games")
  * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\CatalogRepository")
  * @UniqueEntity("name")
  */
-class Dance
+class RoomGame
 {
     /**
      * @ORM\Column(name="id", type="integer")

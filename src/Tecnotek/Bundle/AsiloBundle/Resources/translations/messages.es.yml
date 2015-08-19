@@ -122,6 +122,18 @@ select.activity: Seleccionar Actividad
 activities.or.aspects: Actividades | Aspectos
 elements: Elementos
 
+#Enums
+item.5.enum.option.1: Solo
+item.5.enum.option.2: Necesita Supervición
+item.5.enum.option.3: Necesita Ayuda Parcial
+item.5.enum.option.4: Necesita Ayuda Total
+item.5.enum.option.5: Necesita Sonda
+
+item.6.enum.option.1: Solo
+item.6.enum.option.2: Necesita Supervición
+item.6.enum.option.3: Necesita Ayuda Parcial
+item.6.enum.option.4: Necesita Ayuda Total
+
 #Validations
 review.and.fix.fields: Por favor revise y corrija los siguientes errores antes de guardar
 validation.not.empty: Este campo es requerido y no puede estar vacío
