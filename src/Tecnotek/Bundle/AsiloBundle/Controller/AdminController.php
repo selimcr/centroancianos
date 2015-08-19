@@ -17,6 +17,12 @@ class AdminController extends Controller
      * @Template()
      */
     public function indexAction() {
-        return $this->render('TecnotekAsiloBundle:Admin:index.html.twig');
+        // Get initial data to render the dashboard
+        $em = $this->getDoctrine()->getEntityManager();
+        $counters = $em->getRepository("TecnotekAsiloBundle:Patient")->getPatientsCounters();
+        return $this->render('TecnotekAsiloBundle:Admin:index.html.twig',
+            array(
+                'counters'   => $counters
+            ));
     }
 }

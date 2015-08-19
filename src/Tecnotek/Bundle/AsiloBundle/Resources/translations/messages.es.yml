@@ -114,6 +114,13 @@ gender: Género
 amount: Monto
 yes: Si
 no: No
+men: Hombres
+women: Mujeres
+all: Todos
+
+# Dashboard
+older.adults.age.ranges: Cantidad Adultos Mayores por Rango de Edades
+years.ranges: Rango Años
 
 #
 activities.and.others: Actividades y Otros
