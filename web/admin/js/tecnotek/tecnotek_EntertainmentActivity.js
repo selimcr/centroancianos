@@ -1,6 +1,6 @@
 var Tecnotek = Tecnotek || {};
 
-Tecnotek.EntertaimentActivity = {
+Tecnotek.EntertainmentActivity = {
     List: {
         operateFormatter: function(value, row, index){
             return [
@@ -18,7 +18,7 @@ Tecnotek.EntertaimentActivity = {
             },
             'click .delete': function (e, value, row, index) {
                 if(Tecnotek.showConfirmationQuestion(Tecnotek.UI.translates['confirm-delete'])){
-                    Tecnotek.ajaxCall(Tecnotek.UI.urls['delete-entertaimentActivity'], {
+                    Tecnotek.ajaxCall(Tecnotek.UI.urls['delete-entertainmentActivity'], {
                             id:     row.id
                         },
                         function(data){
@@ -33,12 +33,12 @@ Tecnotek.EntertaimentActivity = {
                 }
             },
             'click .edit': function(e, value, row, index) {
-                $("#panel-entertaimentActivity").addClass("hidden");
-                Tecnotek.UI.vars["entertaimentActivity_id"] = row.id;
-                $('#form-entertaimentActivity').data('bootstrapValidator').resetForm(true);
+                $("#panel-entertainmentActivity").addClass("hidden");
+                Tecnotek.UI.vars["entertainmentActivity_id"] = row.id;
+                $('#form-entertainmentActivity').data('bootstrapValidator').resetForm(true);
                 $("#name").val(row.name);
-                $("#panel-entertaimentActivity-title").html(Tecnotek.UI.translates["edit-entertaimentActivity"]);
-                $("#panel-entertaimentActivity").removeClass("hidden");
+                $("#panel-entertainmentActivity-title").html(Tecnotek.UI.translates["edit-entertainmentActivity"]);
+                $("#panel-entertainmentActivity").removeClass("hidden");
             }
         },
         init: function(){
@@ -46,20 +46,20 @@ Tecnotek.EntertaimentActivity = {
                 e.preventDefault();
                 e.stopPropagation();
                 $("#name").val("");
-                Tecnotek.UI.vars["entertaimentActivity_id"] = 0;
-                $("#panel-entertaimentActivity-title").html($(this).attr("title"));
-                $('#form-entertaimentActivity').data('bootstrapValidator').resetForm(true);
-                $("#panel-entertaimentActivity").removeClass("hidden");
+                Tecnotek.UI.vars["entertainmentActivity_id"] = 0;
+                $("#panel-entertainmentActivity-title").html($(this).attr("title"));
+                $('#form-entertainmentActivity').data('bootstrapValidator').resetForm(true);
+                $("#panel-entertainmentActivity").removeClass("hidden");
             });
 
             $("#btn-cancel").click(function(e){
                 e.preventDefault();
                 e.stopPropagation();
-                $("#panel-entertaimentActivity").addClass("hidden");
-                $('#form-entertaimentActivity').data('bootstrapValidator').resetForm(true);
+                $("#panel-entertainmentActivity").addClass("hidden");
+                $('#form-entertainmentActivity').data('bootstrapValidator').resetForm(true);
             });
 
-            $('#form-entertaimentActivity').bootstrapValidator({
+            $('#form-entertainmentActivity').bootstrapValidator({
                 excluded: ':disabled',
                 message: Tecnotek.UI.translates['invalid.value'],
                 feedbackIcons: {
@@ -71,17 +71,17 @@ Tecnotek.EntertaimentActivity = {
                     e.preventDefault();
                     e.stopPropagation();
                     var $name = $("#name").val();
-                    Tecnotek.ajaxCall(Tecnotek.UI.urls['save-entertaimentActivity'], {
-                            id:     Tecnotek.UI.vars["entertaimentActivity_id"],
+                    Tecnotek.ajaxCall(Tecnotek.UI.urls['save-entertainmentActivity'], {
+                            id:     Tecnotek.UI.vars["entertainmentActivity_id"],
                             name:   $name
                         },
                         function(data){
                             if(data.error){
                                 Tecnotek.showErrorMessage(data.msg);
                             } else {
-                                $("#panel-entertaimentActivity").addClass("hidden");
-                                $('#form-entertaimentActivity').data('bootstrapValidator').resetForm(true);
-                                $("#entertaimentActivity-list").bootstrapTable('refresh');
+                                $("#panel-entertainmentActivity").addClass("hidden");
+                                $('#form-entertainmentActivity').data('bootstrapValidator').resetForm(true);
+                                $("#entertainmentActivity-list").bootstrapTable('refresh');
                                 Tecnotek.showInfoMessage(data.msg);
                             }
                         }, function(){

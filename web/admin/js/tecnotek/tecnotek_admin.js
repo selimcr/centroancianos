@@ -44,7 +44,7 @@ var Tecnotek = {
                 case "sports-list": Tecnotek.Sports.List.init(); break;
                 case "dance-list": Tecnotek.Dance.List.init(); break;
                 case "disease-list": Tecnotek.Disease.List.init(); break;
-                case "entertainmentActivity-list": Tecnotek.EntertaimentActivity.List.init(); break;
+                case "entertainment-activity-list": Tecnotek.EntertainmentActivity.List.init(); break;
                 case "instrument-list": Tecnotek.Instrument.List.init(); break;
                 case "manuality-list": Tecnotek.Manuality.List.init(); break;
                 case "music-list": Tecnotek.Music.List.init(); break;
