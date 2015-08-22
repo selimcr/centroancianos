@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="tecnotek_room_games")
- * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\RoomGameRepository")
+ * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\CatalogRepository")
  * @UniqueEntity("name")
  */
 class RoomGame
