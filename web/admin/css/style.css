@@ -4941,3 +4941,5 @@ span.customSelect.changed {
 /* */
 .bootstrap-table {padding: 5px;}
 .glyphicon {margin-left: 5px;}
+.table-with-header thead {background-color: #eb8f00;}
+.table-with-header thead tr th {color: #fff !important; font-weight: bold;}

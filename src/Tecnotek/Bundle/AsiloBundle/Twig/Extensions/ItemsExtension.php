@@ -27,17 +27,6 @@ class ItemsExtension extends \Twig_Extension
         );
     }
 
-    public function twig_include_raw($file) {
-        return file_get_contents($file);
-    }
-
-    public function getFilters()
-    {
-        return array(
-            //'renderItem' => new \Twig_Filter_Method($this, 'renderItem'),
-        );
-    }
-
     public function renderItem( \Tecnotek\Bundle\AsiloBundle\Entity\ActivityItem $item, $patientValues, $cataloges) {
         $html = "";
         switch($item->getType()){
@@ -145,6 +134,20 @@ class ItemsExtension extends \Twig_Extension
         }
         $html .= "";
         return $html;
+    }
+
+    public function twig_include_raw($file) {
+        return file_get_contents($file);
+    }
+
+    public function getFilters() {
+        return array(
+            'renderPercentage' => new \Twig_Filter_Method($this, 'renderPercentage'),
+        );
+    }
+
+    public function renderPercentage( $value ) {
+        return round($value, 1) . "%";
     }
 
     public function getName()

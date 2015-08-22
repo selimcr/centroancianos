@@ -38,6 +38,8 @@ dashboard: Dashboard
 # Menu
 home: Inicio
 forms: Mantenimientos
+results: Resultados
+cognitive.activities: Actividades Cognitivas
 
 # Actions
 actions: Acciones
@@ -213,6 +215,7 @@ no: No
 men: Hombres
 women: Mujeres
 all: Todos
+total: Total
 
 # Dashboard
 older.adults.age.ranges: Cantidad Adultos Mayores por Rango de Edades
@@ -224,6 +227,7 @@ select.activity.type: Seleccione el tipo de actividades o aspectos que desea rev
 select.activity: Seleccionar Actividad
 activities.or.aspects: Actividades | Aspectos
 elements: Elementos
+aspectos.recreativos: Aspectos Recreativos
 
 #Enums
 item.5.enum.option.1: Solo
