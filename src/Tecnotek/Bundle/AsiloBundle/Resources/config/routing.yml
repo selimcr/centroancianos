@@ -36,3 +36,8 @@ _pilar_gamboa_admin_activities:
     resource: "@TecnotekAsiloBundle/Controller/ActivitiesController.php"
     type:     annotation
     prefix:   /admin
+
+_pilar_gamboa_admin_results:
+    resource: "@TecnotekAsiloBundle/Controller/ResultsController.php"
+    type:     annotation
+    prefix:   /admin

@@ -46,6 +46,7 @@ var Tecnotek = {
                 case "patients-list": Tecnotek.Patients.List.init(); break;
                 case "patients-edit": Tecnotek.Patients.Edit.init(); break;
                 case "patients-pentions-list": Tecnotek.PatientsPentions.List.init(); break;
+                case "results": Tecnotek.Results.loadItemsResults(); break;
                 default: break;
             }
         }
