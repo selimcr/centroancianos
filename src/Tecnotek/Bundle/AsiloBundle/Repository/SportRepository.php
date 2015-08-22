@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
+use Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Sport;
 
 /**
  *
@@ -19,7 +19,7 @@ class SportRepository extends EntityRepository
     }
 
     public function getPageWithFilter($offset, $limit, $search, $sort, $order ){
-        $dql = "SELECT s FROM TecnotekAsiloBundle:Sport s";
+        $dql = "SELECT s FROM TecnotekAsiloBundle:Catalog\Sport s";
         $dql .= ($search == "")? "":" WHERE s.name LIKE :search";
         $dql .= ($sort == "")? "":" order by s." . $sort . " " . $order;
 

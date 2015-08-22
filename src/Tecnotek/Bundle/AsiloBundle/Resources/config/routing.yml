@@ -22,6 +22,66 @@ _pilar_gamboa_admin_sports:
     type:     annotation
     prefix:   /admin
 
+_pilar_gamboa_admin_dance:
+    resource: "@TecnotekAsiloBundle/Controller/DanceController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_disease:
+    resource: "@TecnotekAsiloBundle/Controller/DiseaseController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_entertainmentActivity:
+    resource: "@TecnotekAsiloBundle/Controller/EntertainmentActivityController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_instrument:
+    resource: "@TecnotekAsiloBundle/Controller/InstrumentController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_manuality:
+    resource: "@TecnotekAsiloBundle/Controller/ManualityController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_music:
+    resource: "@TecnotekAsiloBundle/Controller/MusicController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_religion:
+    resource: "@TecnotekAsiloBundle/Controller/ReligionController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_roomGame:
+    resource: "@TecnotekAsiloBundle/Controller/RoomGameController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_sleepHabit:
+    resource: "@TecnotekAsiloBundle/Controller/SleepHabitController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_reading:
+    resource: "@TecnotekAsiloBundle/Controller/ReadingController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_spiritualActivity:
+    resource: "@TecnotekAsiloBundle/Controller/SpiritualActivityController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_writing:
+    resource: "@TecnotekAsiloBundle/Controller/WritingController.php"
+    type:     annotation
+    prefix:   /admin
+
 _pilar_gamboa_admin_pentions:
     resource: "@TecnotekAsiloBundle/Controller/PentionsController.php"
     type:     annotation

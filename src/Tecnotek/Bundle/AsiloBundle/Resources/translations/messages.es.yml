@@ -59,6 +59,102 @@ sport.save.success: El deporte fue guardado correctamente
 sport.delete.success: El deporte fue eliminado correctamente
 confirm.sport.delete: ¿Está seguro que desea eliminar este deporte?
 
+# Dance
+dance: Bailes
+create.dance: Crear Baile
+edit.dance: Editar Baile
+dance.save.success: El baile fue guardado correctamente
+dance.delete.success: El baile fue eliminado correctamente
+confirm.dance.delete: ¿Está seguro que desea eliminar este baile?
+
+# Disease
+disease: Enfermedades
+create.disease: Crear Enfermedad
+edit.disease: Editar Enfermedad
+disease.save.success: La enfermedad fue guardado correctamente
+disease.delete.success: La enfermedad fue eliminado correctamente
+confirm.disease.delete: ¿Está seguro que desea eliminar esta enfermedad?
+
+# EntertainmentActivity
+entertainmentActivity: Actividades
+create.entertainmentActivity: Crear Actividad
+edit.entertainmentActivity: Editar Actividad
+entertainmentActivity.save.success: La actividad fue guardado correctamente
+entertainmentActivity.delete.success: La actividad fue eliminado correctamente
+confirm.entertainmentActivity.delete: ¿Está seguro que desea eliminar esta actividad?
+
+# Instrument
+instrument: Instrumento
+create.instrument: Crear Instrumento
+edit.instrument: Editar Instrumento
+instrument.save.success: El Instrumento fue guardado correctamente
+instrument.delete.success: El Instrumento fue eliminado correctamente
+confirm.instrument.delete: ¿Está seguro que desea eliminar este Instrumento?
+
+# Manuality
+manuality: Manualidad
+create.manuality: Crear Manualidad
+edit.manuality: Editar Manualidad
+manuality.save.success: La manualidad fue guardado correctamente
+manuality.delete.success: La manualidad fue eliminado correctamente
+confirm.manuality.delete: ¿Está seguro que desea eliminar esta manualidad?
+
+# Music
+music: Musica
+create.music: Crear Musica
+edit.music: Editar Musica
+music.save.success: La música fue guardado correctamente
+music.delete.success: La música fue eliminado correctamente
+confirm.music.delete: ¿Está seguro que desea eliminar esta música?
+
+# Reading
+reading: Lectura
+create.reading: Crear Lectura
+edit.reading: Editar Lectura
+reading.save.success: La lectura fue guardado correctamente
+reading.delete.success: La lectura fue eliminado correctamente
+confirm.reading.delete: ¿Está seguro que desea eliminar esta lectura?
+
+# Religion
+religion: Religion
+create.religion: Crear Religión
+edit.religion: Editar Religión
+religion.save.success: La religión fue guardado correctamente
+religion.delete.success: La religión fue eliminado correctamente
+confirm.religion.delete: ¿Está seguro que desea eliminar esta religión?
+
+# RoomGame
+roomGame: Juego
+create.roomGame: Crear Juego
+edit.roomGame: Editar Juego
+roomGame.save.success: El juego fue guardado correctamente
+roomGame.delete.success: El juego fue eliminado correctamente
+confirm.roomGame.delete: ¿Está seguro que desea eliminar este juego?
+
+# SleepHabit
+sleepHabit: Hábito
+create.sleepHabit: Crear Hábito
+edit.sleepHabit: Editar Hábito
+sleepHabit.save.success: El hábito fue guardado correctamente
+sleepHabit.delete.success: El hábito fue eliminado correctamente
+confirm.sleepHabit.delete: ¿Está seguro que desea eliminar este hábito?
+
+# SpiritualActivity
+spiritualActivity: Actividad Espiritual
+create.spiritualActivity: Crear Actividad Espiritual
+edit.spiritualActivity: Editar Actividad Espiritual
+spiritualActivity.save.success: La Actividad Espiritual fue guardado correctamente
+spiritualActivity.delete.success: La Actividad Espiritual fue eliminado correctamente
+confirm.spiritualActivity.delete: ¿Está seguro que desea eliminar esta Actividad Espiritual?
+
+# Writing
+writing: Escritura
+create.writing: Crear Escritura
+edit.writing: Editar Escritura
+writing.save.success: La escritura fue guardado correctamente
+writing.delete.success: La escritura fue eliminado correctamente
+confirm.writing.delete: ¿Está seguro que desea eliminar esta escritura?
+
 # Patients
 patients: Pacientes
 patient.main.info: Información Principal

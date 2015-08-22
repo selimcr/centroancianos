@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
+use Tecnotek\Bundle\AsiloBundle\Entity\Catalog\Sport;
 
 class SportsController extends Controller
 {
@@ -42,7 +42,7 @@ class SportsController extends Controller
                 $sort = $request->get('sort');
 
                 $em = $this->getDoctrine()->getManager();
-                $paginator = $em->getRepository("TecnotekAsiloBundle:Sport")
+                $paginator = $em->getRepository('TecnotekAsiloBundle:Catalog\Sport')
                     ->getPageWithFilter($offset, $limit, $search, $sort, $order);
 
                 $results = array();
@@ -89,7 +89,7 @@ class SportsController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $sport = new Sport();
                     if($id != 0) { //It's updating, find the sport
-                        $sport = $em->getRepository("TecnotekAsiloBundle:Sport")->find($id);
+                        $sport = $em->getRepository('TecnotekAsiloBundle:Catalog\Sport')->find($id);
                     }
                     if( isset($sport) ) {
                         $sport->setName($name);
@@ -137,7 +137,7 @@ class SportsController extends Controller
             if( isset($id) ){
                 $em = $this->getDoctrine()->getManager();
                 $sport = new Sport();
-                $sport = $em->getRepository("TecnotekAsiloBundle:Sport")->find($id);
+                $sport = $em->getRepository('TecnotekAsiloBundle:Catalog\Sport')->find($id);
                 if( isset($sport) ) {
                     $em->remove($sport);
                     $em->flush();
