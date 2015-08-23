@@ -229,6 +229,9 @@ select.activity: Seleccionar Actividad
 activities.or.aspects: Actividades | Aspectos
 elements: Elementos
 aspectos.recreativos: Aspectos Recreativos
+spiritual.aspects: Aspectos Espirituales
+cognitivities.activities: Actividades Cognitivas
+basic.needs: Necesidades Básicas
 
 #Entities
 Sport: Deportes
@@ -240,6 +243,7 @@ Instrument: Instrumentos
 EntertainmentActivity: Actividades
 RoomGame: Juegos de Salón
 Dance: Estilos de Baile
+SleepHabit: Hábito de Sueño
 
 #Enums
 item.5.enum.option.1: Solo

@@ -2,6 +2,9 @@ var Tecnotek = Tecnotek || {};
 
 Tecnotek.Results = {
     loadItemsResults: function() {
+
+
+
         $('.yes-no-item-results').each(function () {
             var url = Tecnotek.UI.urls['render-yes-no-results'];
             url = url.replace('xid', $(this).attr('item-id'));
@@ -13,6 +16,20 @@ Tecnotek.Results = {
             var url = Tecnotek.UI.urls['render-yes-no-plus-entity-results'];
             url = url.replace('xid', $(this).attr('item-id'));
             $(this).load( url );
+        });
+
+        $('.constants-list-item-results').each(function () {
+            var url = Tecnotek.UI.urls['render-constants-select-results'];
+            url = url.replace('xid', $(this).attr('item-id'));
+            var useActivityTitle = $(this).attr('use-activity-title')? $(this).attr('use-activity-title'):0;
+            $(this).load( url, {useActivityTitle: useActivityTitle} );
+        });
+
+        $('.entity-item-results').each(function () {
+            var url = Tecnotek.UI.urls['render-entity-results'];
+            url = url.replace('xid', $(this).attr('item-id'));
+            var useActivityTitle = $(this).attr('use-activity-title')? $(this).attr('use-activity-title'):0;
+            $(this).load( url, {useActivityTitle: useActivityTitle} );
         });
     },
     Edit: {

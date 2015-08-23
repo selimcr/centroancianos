@@ -17,24 +17,25 @@ class ResultsController extends Controller
         $session = $this->getRequest()->getSession();
         $session->set('totalMen', $gendersCounter[1]);
         $session->set('totalWomen', $gendersCounter[2]);
-        $logger = $this->get("logger");
-        $logger->err("*********************************************");
-        $logger->err("Hombres: " + $session->get('totalMen'));
-        $logger->err("Mujeres: " + $session->get('totalWomen'));
     }
+
+    private function renderActivityTypeResults($activityTypeId, $twigFile) {
+        $this->setGendersCounter();
+        $em = $this->getDoctrine()->getEntityManager();
+        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find($activityTypeId);
+        return $this->render('TecnotekAsiloBundle:Admin:results/' . $twigFile . '.html.twig',
+            array(
+                'activityType'   => $activityType,
+            ));
+    }
+
     /**
      * @Route("/results/cognitiveActivites", name="_admin_results_cognitive_activities")
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
     public function cognitiveActivitiesAction() {
-        $this->setGendersCounter();
-        $em = $this->getDoctrine()->getEntityManager();
-        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find(1);
-        return $this->render('TecnotekAsiloBundle:Admin:results/cognitive_activities.html.twig',
-            array(
-                'activityType'   => $activityType,
-            ));
+        return $this->renderActivityTypeResults(1, 'cognitive_activities');
     }
 
     /**
@@ -43,13 +44,25 @@ class ResultsController extends Controller
      * @Template()
      */
     public function aspectosRecreativosAction() {
-        $this->setGendersCounter();
-        $em = $this->getDoctrine()->getEntityManager();
-        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find(2);
-        return $this->render('TecnotekAsiloBundle:Admin:results/aspectos_recreativos.html.twig',
-            array(
-                'activityType'   => $activityType,
-            ));
+        return $this->renderActivityTypeResults(2, 'aspectos_recreativos');
+    }
+
+    /**
+     * @Route("/results/aspectosEspirituales", name="_admin_results_aspectos_espirituales")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @Template()
+     */
+    public function aspectosEspiritualesAction() {
+        return $this->renderActivityTypeResults(3, 'aspectos_espirituales');
+    }
+
+    /**
+     * @Route("/results/necesidadesBasicas", name="_admin_results_necesidades_basicas")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @Template()
+     */
+    public function necesidadesBasicasAction() {
+        return $this->renderActivityTypeResults(4, 'necesidades_basicas');
     }
 
     /**
@@ -103,11 +116,6 @@ class ResultsController extends Controller
             $totalMen = $session->get("totalMen");
             $totalWomen = $session->get("totalWomen");
             $data = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")->getYesNoData($itemId, $totalMen, $totalWomen);
-            $session = $this->getRequest()->getSession();
-            $totalMen = $session->get("totalMen");
-            $totalWomen = $session->get("totalWomen");
-            $data['menNo'] = $totalMen - $data['menYes'];
-            $data['womenNo'] = $totalWomen - $data['womenYes'];
             $entityTableData = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")
                 ->getEntityActivityData($entityItem);
             return $this->render('TecnotekAsiloBundle:Admin:results/yes_no_plus_entity_result.html.twig',
@@ -120,6 +128,68 @@ class ResultsController extends Controller
         } catch (Exception $e) {
             $info = toString($e);
             $logger->err('ResultsController::renderYesNoResultsAction [' . $info . "]");
+            return new Response(json_encode(array('error' => true, 'message' => $info)));
+        }
+    }
+
+    /**
+     * Return a List of Patients paginated for Bootstrap Table
+     *
+     * @Route("/activities/{itemId}/results/constants", name="_activity_results_constants")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @Template()
+     */
+    public function renderConstantsResultsAction($itemId) {
+        $logger = $this->get('logger');
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $item = $em->getRepository("TecnotekAsiloBundle:ActivityItem")->find($itemId);
+            $useActivityTitle = $this->getRequest()->get('useActivityTitle');
+            $title = $useActivityTitle == 0? $item->getTitle():$item->getActivity()->getTitle();
+            $session = $this->getRequest()->getSession();
+            $totalMen = $session->get("totalMen");
+            $totalWomen = $session->get("totalWomen");
+            $data = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")
+                ->getConstantsActivityData($item, $totalMen, $totalWomen);
+
+            return $this->render('TecnotekAsiloBundle:Admin:results/constants_list_result.html.twig',
+                array(
+                    'item'              => $item,
+                    'data'              => $data,
+                    'title'             => $title,
+                ));
+        } catch (Exception $e) {
+            $info = toString($e);
+            $logger->err('ResultsController::renderConstantsResultsAction [' . $info . "]");
+            return new Response(json_encode(array('error' => true, 'message' => $info)));
+        }
+    }
+
+    /**
+     *
+     * @Route("/activities/{itemId}/results/entity", name="_activity_results_entity")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @Template()
+     */
+    public function renderEntityResultsAction($itemId) {
+        $logger = $this->get('logger');
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $entityItem = $em->getRepository("TecnotekAsiloBundle:ActivityItem")->find($itemId);
+
+            $session = $this->getRequest()->getSession();
+            $totalMen = $session->get("totalMen");
+            $totalWomen = $session->get("totalWomen");
+            $entityTableData = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")
+                ->getEntityActivityData($entityItem);
+            return $this->render('TecnotekAsiloBundle:Admin:results/entity_result.html.twig',
+                array(
+                    'entityItem'        => $entityItem,
+                    'entityTableData'   => $entityTableData,
+                ));
+        } catch (Exception $e) {
+            $info = toString($e);
+            $logger->err('ResultsController::renderEntityResultsAction [' . $info . "]");
             return new Response(json_encode(array('error' => true, 'message' => $info)));
         }
     }

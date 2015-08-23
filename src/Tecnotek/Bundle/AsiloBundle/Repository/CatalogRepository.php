@@ -6,6 +6,8 @@ use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use Tecnotek\Bundle\AsiloBundle\Entity\Catalog;
+use Tecnotek\Bundle\AsiloBundle\Util\Enum\Item5Enum;
+use Tecnotek\Bundle\AsiloBundle\Util\Enum\Item6Enum;
 
 /**
  *
@@ -97,6 +99,62 @@ class CatalogRepository extends EntityRepository
         return $result;
     }
 
+    public function getConstantsActivityData($item, $totalMen, $totalWomen) {
+        if($item->getType() == 5) {
+            $options = Item5Enum::getConstants();
+            $defaultKey = 2;
+        } else {
+            $options = Item6Enum::getConstants();
+            $defaultKey = 2;
+        }
+
+        $optionsArray = array();
+        foreach($options as $option) {
+            $optionArray = array();
+            $optionArray["1"] = 0;
+            $optionArray["2"] = 0;
+            $optionsArray[$option] = $optionArray;
+        }
+
+        $sql = "select p.gender, pi.value, count(*) as 'counter'
+                from tecnotek_patient_items pi
+                left join tecnotek_patients p on pi.patient_id = p.id
+                where pi.item_id = " . $item->getId() . "
+                group by p.gender, value;
+                ";
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute();
+        $records = $stmt->fetchAll();
+        foreach($records as $row) {
+            $optionsArray[$row['value']][$row['gender']] = $row['counter'];
+        }
+        $totalPatients = $totalMen + $totalWomen;
+        $totalNonDefaultMen = 0;
+        $totalNonDefaultWomen = 0;
+        $totalNonDefaultAll = 0;
+
+        foreach(array_keys($optionsArray) as $key){
+            $optionsArray[$key]['percMen'] = 100*$optionsArray[$key]['1']/$totalMen;
+            $optionsArray[$key]['percWomen'] = 100*$optionsArray[$key]['2']/$totalWomen;
+            $totalAll = $optionsArray[$key]['1'] + $optionsArray[$key]['2'];
+            $optionsArray[$key]['all'] = $totalAll;
+            $optionsArray[$key]['percAll'] = 100*$totalAll/$totalPatients;
+            if($key != $defaultKey) {
+                $totalNonDefaultMen += $optionsArray[$key]['1'];
+                $totalNonDefaultWomen += $optionsArray[$key]['2'];
+            }
+        }
+        $totalNonDefaultAll = $totalNonDefaultMen + $totalNonDefaultWomen;
+        $optionsArray[$defaultKey]['1'] = $totalMen-$totalNonDefaultMen;
+        $optionsArray[$defaultKey]['2'] = $totalWomen-$totalNonDefaultWomen;
+        $optionsArray[$defaultKey]['all'] = $totalPatients-$totalNonDefaultAll;
+        $optionsArray[$defaultKey]['percMen'] = 100*($totalMen-$totalNonDefaultMen)/$totalMen;
+        $optionsArray[$defaultKey]['percWomen'] = 100*($totalWomen-$totalNonDefaultWomen)/$totalWomen;
+        $optionsArray[$defaultKey]['percAll'] = 100*($totalPatients-$totalNonDefaultAll)/$totalPatients;
+
+        return $optionsArray;
+    }
+
     private function getTableNameForEntityItem($referencedEntity) {
         switch($referencedEntity) {
             case 'Sport': return "tecnotek_sports";
@@ -108,6 +166,9 @@ class CatalogRepository extends EntityRepository
             case 'EntertainmentActivity': return 'tecnotek_entertainment_activities';
             case "RoomGame": return "tecnotek_room_games";
             case "Dance": return "tecnotek_dances";
+            case "Religion": return "tecnotek_religions";
+            case "SpiritualActivity": return "tecnotek_spiritual_activities";
+            case "SleepHabit": return "tecnotek_sleep_habits";
             default: return "";
         }
     }

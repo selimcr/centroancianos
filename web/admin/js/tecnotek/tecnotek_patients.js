@@ -10,7 +10,13 @@ Tecnotek.Patients = {
             Tecnotek.showPleaseWait();
             var url = Tecnotek.UI.urls['get-activity-form'];
             url = url.replace('xid', $("#activityType").val());
-            $( "#activityContainer" ).load( url );
+            $( "#activityContainer" ).load( url, {},
+                function (responseText, textStatus, XMLHttpRequest) {
+                    if (textStatus == "error") {
+                        Tecnotek.hidePleaseWait();
+                        Tecnotek.showErrorMessage("Ocurrió un error inesperado, por favor intenta otra vez");
+                    }
+                } );
         },
         initActivitiesEvents: function() {
             $(".activity").click(function(e){
@@ -69,7 +75,13 @@ Tecnotek.Patients = {
             var url = Tecnotek.UI.urls['get-activity-items'];
             url = url.replace('xid', id);
             Tecnotek.showPleaseWait();
-            $( "#itemsContainer" ).load( url );
+            $( "#itemsContainer" ).load( url, {},
+                function (responseText, textStatus, XMLHttpRequest) {
+                    if (textStatus == "error") {
+                        Tecnotek.hidePleaseWait();
+                        Tecnotek.showErrorMessage("Ocurrió un error inesperado, por favor intenta otra vez");
+                    }
+                } );
             $(".activity-li").removeClass("active");
             $this.parent('li').addClass('active');
         },
