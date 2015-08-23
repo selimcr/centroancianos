@@ -216,6 +216,7 @@ men: Hombres
 women: Mujeres
 all: Todos
 total: Total
+participants: Participantes
 
 # Dashboard
 older.adults.age.ranges: Cantidad Adultos Mayores por Rango de Edades
@@ -228,6 +229,17 @@ select.activity: Seleccionar Actividad
 activities.or.aspects: Actividades | Aspectos
 elements: Elementos
 aspectos.recreativos: Aspectos Recreativos
+
+#Entities
+Sport: Deportes
+Reading: Lecturas
+Writing: Escrituras
+Manuality: Manualidades
+Music: Estilos Musicales
+Instrument: Instrumentos
+EntertainmentActivity: Actividades
+RoomGame: Juegos de Salón
+Dance: Estilos de Baile
 
 #Enums
 item.5.enum.option.1: Solo

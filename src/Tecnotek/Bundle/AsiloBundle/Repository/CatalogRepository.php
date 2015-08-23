@@ -84,5 +84,32 @@ class CatalogRepository extends EntityRepository
             'allYesPerc'     => ($menYes + $womenYes) == 0? 0:($menYes + $womenYes) * 100 / ($menNo + $womenNo + $menYes + $womenYes),
         );
     }
+
+    public function getEntityActivityData($item) {
+        $sql = "select s.*,
+        (select count(pi.id) from tecnotek_patient_items pi where pi.item_id = " .
+            $item->getId() . " and INSTR(pi.value , '['+s.id+']')) as 'counter'
+        from " . $this->getTableNameForEntityItem($item->getReferencedEntity()) . " s
+        order by s.name;";
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    private function getTableNameForEntityItem($referencedEntity) {
+        switch($referencedEntity) {
+            case 'Sport': return "tecnotek_sports";
+            case 'Reading': return "tecnotek_readings";
+            case 'Writing': return "tecnotek_writings";
+            case 'Manuality': return "tecnotek_manualities";
+            case 'Music': return "tecnotek_musics";
+            case 'Instrument': return "tecnotek_instruments";
+            case 'EntertainmentActivity': return 'tecnotek_entertainment_activities';
+            case "RoomGame": return "tecnotek_room_games";
+            case "Dance": return "tecnotek_dances";
+            default: return "";
+        }
+    }
 }
 ?>

@@ -58,7 +58,12 @@ class PatientsController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($patient);
                 $em->flush();
-
+                $session = $this->getRequest()->getSession();
+                if($patient->getGender() == 1) {
+                    $session->set('totalMen', $session->get('totalMen') + 1);
+                } else {
+                    $session->set('totalWomen', $session->get('totalWomen') + 1);
+                }
                 return $this->redirect($this->generateUrl("_admin_patients"));
             } else {
                 return $this->render('TecnotekAsiloBundle:Admin:patients_create.html.twig',
@@ -202,7 +207,7 @@ class PatientsController extends Controller
      * @Route("/patients/delete", name="_patients_delete")
      * @Template()
      */
-    public function deleteSportAction() {
+    public function deletePatientAction() {
         $logger = $this->get('logger');
         if ($this->get('request')->isXmlHttpRequest())// Is the request an ajax one?
         {
@@ -214,10 +219,16 @@ class PatientsController extends Controller
 
                 if( isset($id) ){
                     $em = $this->getDoctrine()->getManager();
-                    $sport = new Sport();
-                    $sport = $em->getRepository("TecnotekAsiloBundle:Sport")->find($id);
-                    if( isset($sport) ) {
-                        $em->remove($sport);
+                    $patient = new Patient();
+                    $patient = $em->getRepository("TecnotekAsiloBundle:Patient")->find($id);
+                    if( isset($patient) ) {
+                        $session = $this->getRequest()->getSession();
+                        if($patient->getGender() == 1) {
+                            $session->set('totalMen', $session->get('totalMen') + 1);
+                        } else {
+                            $session->set('totalWomen', $session->get('totalWomen') + 1);
+                        }
+                        $em->remove($patient);
                         $em->flush();
                         return new Response(json_encode(array(
                             'error' => false,
