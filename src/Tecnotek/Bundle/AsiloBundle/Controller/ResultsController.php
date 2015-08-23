@@ -11,12 +11,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ResultsController extends Controller
 {
+    private function setGendersCounter() {
+        $em = $this->getDoctrine()->getEntityManager();
+        $gendersCounter = $em->getRepository("TecnotekAsiloBundle:Patient")->getGendersCounters();
+        $session = $this->getRequest()->getSession();
+        $session->set('totalMen', $gendersCounter[1]);
+        $session->set('totalWomen', $gendersCounter[2]);
+        $logger = $this->get("logger");
+        $logger->err("*********************************************");
+        $logger->err("Hombres: " + $session->get('totalMen'));
+        $logger->err("Mujeres: " + $session->get('totalWomen'));
+    }
     /**
      * @Route("/results/cognitiveActivites", name="_admin_results_cognitive_activities")
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
     public function cognitiveActivitiesAction() {
+        $this->setGendersCounter();
         $em = $this->getDoctrine()->getEntityManager();
         $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find(1);
         return $this->render('TecnotekAsiloBundle:Admin:results/cognitive_activities.html.twig',
@@ -31,6 +43,7 @@ class ResultsController extends Controller
      * @Template()
      */
     public function aspectosRecreativosAction() {
+        $this->setGendersCounter();
         $em = $this->getDoctrine()->getEntityManager();
         $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find(2);
         return $this->render('TecnotekAsiloBundle:Admin:results/aspectos_recreativos.html.twig',
@@ -53,11 +66,16 @@ class ResultsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $item = $em->getRepository("TecnotekAsiloBundle:ActivityItem")->find($itemId);
             $title = $useActivityTitle == 0? $item->getTitle():$item->getActivity()->getTitle();
-            $readingData = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")->getYesNoData($itemId);
+
+            $session = $this->getRequest()->getSession();
+            $totalMen = $session->get("totalMen");
+            $totalWomen = $session->get("totalWomen");
+            $data = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")->getYesNoData($itemId, $totalMen, $totalWomen);
+
             return $this->render('TecnotekAsiloBundle:Admin:results/yes_no_result.html.twig',
                 array(
                     'item'   => $item,
-                    'data'   => $readingData,
+                    'data'   => $data,
                     'title'  => $title,
                 ));
         } catch (Exception $e) {
@@ -81,14 +99,22 @@ class ResultsController extends Controller
             $item = $em->getRepository("TecnotekAsiloBundle:ActivityItem")->find($itemId);
             $entityItem = $em->getRepository("TecnotekAsiloBundle:ActivityItem")->find($itemId + 1);
 
-            $readingData = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")->getYesNoData($itemId);
+            $session = $this->getRequest()->getSession();
+            $totalMen = $session->get("totalMen");
+            $totalWomen = $session->get("totalWomen");
+            $data = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")->getYesNoData($itemId, $totalMen, $totalWomen);
+            $session = $this->getRequest()->getSession();
+            $totalMen = $session->get("totalMen");
+            $totalWomen = $session->get("totalWomen");
+            $data['menNo'] = $totalMen - $data['menYes'];
+            $data['womenNo'] = $totalWomen - $data['womenYes'];
             $entityTableData = $em->getRepository("TecnotekAsiloBundle:Catalog\\Dance")
                 ->getEntityActivityData($entityItem);
             return $this->render('TecnotekAsiloBundle:Admin:results/yes_no_plus_entity_result.html.twig',
                 array(
-                    'item'   => $item,
-                    'entityItem'    => $entityItem,
-                    'data'   => $readingData,
+                    'item'              => $item,
+                    'entityItem'        => $entityItem,
+                    'data'              => $data,
                     'entityTableData'   => $entityTableData,
                 ));
         } catch (Exception $e) {

@@ -25,7 +25,9 @@
 {% for activity in activityType.activities %}
     {% for item in activity.items %}
         {% if item.type == 1 %}
-            <div class="row yes-no-item-results" item-id="{{ item.id }}"></div>
+            <div class="row yes-no-item-results" item-id="{{ item.id }}">
+                <div class="loader">Loading...</div>
+            </div>
         {% endif %}
     {% endfor %}
 {% endfor %}

@@ -36,7 +36,7 @@ class CatalogRepository extends EntityRepository
         return $paginator;
     }
 
-    public function getYesNoData($itemId) {
+    public function getYesNoData($itemId, $totalMen, $totalWomen) {
         $sql = "select p.gender, pi.value, count(*) as 'counter'
                 from tecnotek_patient_items pi
                 left join tecnotek_patients p on pi.patient_id = p.id
@@ -60,9 +60,9 @@ class CatalogRepository extends EntityRepository
         }
 
         $menYes = $counters["1"]["1"];
-        $menNo = $counters["1"]["0"];
+        $menNo = $totalMen - $menYes;
         $womenYes = $counters["2"]["1"];
-        $womenNo = $counters["2"]["0"];
+        $womenNo = $totalWomen - $womenYes;
         $menTotal = $menNo + $menYes;
         $womenTotal = $womenNo + $womenYes;
 

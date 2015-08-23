@@ -36,7 +36,7 @@ class PatientRepository extends EntityRepository
         return $paginator;
     }
 
-    public function getPatientsCounters() {
+    public function getGendersCounters() {
         $sql = "select gender, count(*) as 'count' from tecnotek_patients group by gender;";
         $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute();
@@ -45,6 +45,11 @@ class PatientRepository extends EntityRepository
         foreach($result as $row) {
             $counters[$row['gender']] = $row['count'];
         }
+        return $counters;
+    }
+
+    public function getPatientsCounters() {
+        $counters = $this->getGendersCounters();
 
         $sql = "select 	sum(case when age between 0 and 69 then 1 end) as '65-69',
 		        sum(case when age between 70 and 80 then 1 end) as '70-80',
