@@ -38,8 +38,10 @@ dashboard: Dashboard
 # Menu
 home: Inicio
 forms: Mantenimientos
+reports: Reportes
 results: Resultados
 cognitive.activities: Actividades Cognitivas
+patiens.list: Listados de Pacientes
 
 # Actions
 actions: Acciones
@@ -258,3 +260,9 @@ review.and.fix.fields: Por favor revise y corrija los siguientes errores antes d
 validation.not.empty: Este campo es requerido y no puede estar vacío
 validation.not.found: El objeto no fue encontrado
 validation.only.digits: Este campo sólo puede contener dígitos
+
+#Reports
+label.print: Imprimir
+label.report.id: Identificación
+label.report.name: Nombre
+

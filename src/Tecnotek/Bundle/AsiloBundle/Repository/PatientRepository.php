@@ -36,6 +36,16 @@ class PatientRepository extends EntityRepository
         return $paginator;
     }
 
+    public function getPatients(){
+        $dql = "SELECT s FROM TecnotekAsiloBundle:Patient s";
+
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        $paginator = new Paginator($query, $fetchJoinCollection = false);
+
+        return $paginator;
+    }
+
     public function getGendersCounters() {
         $sql = "select gender, count(*) as 'count' from tecnotek_patients group by gender;";
         $stmt = $this->getEntityManager()->getConnection()->prepare($sql);

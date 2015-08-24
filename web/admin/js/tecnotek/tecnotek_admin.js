@@ -41,6 +41,7 @@ var Tecnotek = {
         console.debug("Module: " + module);
         if (module) {
             switch (module) {
+                case "reports": Tecnotek.Reports.List.init(); break;
                 case "sports-list": Tecnotek.Sports.List.init(); break;
                 case "dance-list": Tecnotek.Dance.List.init(); break;
                 case "disease-list": Tecnotek.Disease.List.init(); break;
