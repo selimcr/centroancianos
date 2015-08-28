@@ -30,7 +30,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/", name="_admin_patiens_report")
+     * @Route("/report/list", name="_admin_patiens_report")
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
@@ -68,37 +68,27 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/", name="_admin_patiens_catalog_report")
+     * @Route("/report/listcatalog", name="_admin_patiens_catalog_report")
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
     public function reportListCatalogAction(){
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository("TecnotekAsiloBundle:Patient")->getPatients();
+        //$entity = $em->getRepository("TecnotekAsiloBundle:Patient")->getPatients();
 
         $results = array();
+        $resultsPatients = array();
 
-        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find($activityTypeId);
+        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->getActivityTypes();
 
         $translator = $this->get('translator');
 
-        foreach($entity as $patient){
+        foreach($activityType as $activity){
 
-            if($patient->getBirthdate()!= null){
-                $birthdaypatient= date_format($patient->getBirthdate(), 'Y-m-d');
-            } else $birthdaypatient="";
-
-            if($patient->getGender()==1){
-                $genderpatient = 'Masc';
-            } else $genderpatient = 'Fem';
-
-
-            array_push($results, array('id' => $patient->getDocumentId(),
-                'name' => ($patient->getFirstName().' '.$patient->getLastName()),
-                'gender' => $genderpatient, 'address' => $patient->getAddress(), 'birthday' => $birthdaypatient));
+            array_push($results, array('id' => $activity->getId(), 'name' => $activity->getName()));
         }
 
-        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list_catalog.html.twig', array('entities' => $results, 'activityType'   => $activityType));
+        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list_catalog.html.twig', array('entities' => $results, 'patients'   => $resultsPatients));
     }
 }

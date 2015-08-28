@@ -17,5 +17,15 @@ class ActivityTypeRepository extends EntityRepository
     {
         return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
     }
+
+    public function getActivityTypes(){
+        $dql = "SELECT a FROM TecnotekAsiloBundle:ActivityType a";
+
+        $query = $this->getEntityManager()->createQuery($dql);
+
+        $paginator = new Paginator($query, $fetchJoinCollection = false);
+
+        return $paginator;
+    }
 }
 ?>

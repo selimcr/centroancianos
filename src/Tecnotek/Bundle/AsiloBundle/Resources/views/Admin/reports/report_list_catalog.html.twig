@@ -20,16 +20,13 @@
             </ol>
         </div>
     </div>
-    <div>
-        <form id="searchForm" action="{{ path('_admin_patiens_report') }}" method="post">
-            <label style="width: 126px;">{%trans%}label.include.in.report{%endtrans%}:</label>
-            <input type="checkbox" class="check" id="gender" name="gender" {% if gender != null %}checked="checked"{% endif %}>{%trans%}label.gender{%endtrans%}
-            <input type="checkbox" class="check" id="address" name="address" {% if address != null %}checked="checked"{% endif %}>{%trans%}label.address{%endtrans%}
-            <input type="checkbox" class="check" id="birthday" name="birthday" {% if birthday != null %}checked="checked"{% endif %}>{%trans%}label.birthday{%endtrans%}
-            <button style="margin-left: 15px; margin-top: 0px;" type="submit" class="right button success-darker tiny" name="search"><span></span>{% trans %}label.generate{% endtrans %}</button>
-        </form>
+    <div id="activitySelect" class="left">
+        <select id="period" name="period" style="width: 150px;">
+            {% for activity in entities %}
+                <option value="{{ activity.id }}">{{activity.name}}</option>
+            {% endfor %}
+        </select>
     </div>
-
     <hr>
     <div style="margin-top: 15px;">
         <button style="margin-left: 15px; margin-top: 0px;" type="button" class="right button success-darker tiny" id="btnPrint" name="btnPrint" rel="Reporte"><span></span>{% trans %}label.print{% endtrans %}</button>
@@ -41,29 +38,11 @@
             <tr>
                 <td style="float: left;  width:120px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.report.id{%endtrans%}</span></td>
                 <td style="float: left;  width:300px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.report.name{%endtrans%}</span></td>
-                {% if gender != null %}
-                    <td style="float: left;  width:50px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.gender{%endtrans%}</span></td>
-                {% endif %}
-                {% if birthday != null %}
-                    <td style="float: left;  width:120px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.birthday{%endtrans%}</span></td>
-                {% endif %}
-                {% if address != null %}
-                    <td style="float: left;  width:300px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.address{%endtrans%}</span></td>
-                {% endif %}
             </tr>
-            {% for patient in entities %}
+            {% for patient in patients %}
                 <tr>
                     <td style="float: left;  width:120px; height: 22px;"><span style="font-family:arial;font-size:14px;">&nbsp{{ patient.id }}</span></td>
                     <td style="float: left;  width:300px; height: 22px;"><span style="font-family:arial;font-size:14px;">&nbsp{{ patient.name }}</span></td>
-                    {% if gender != null %}
-                        <td style="float: left;  width:50px; height: 22px;"><span style="font-family:arial;font-size:14px;">&nbsp{{ patient.gender }}</span></td>
-                    {% endif %}
-                    {% if birthday != null %}
-                        <td style="float: left;  width:120px; height: 22px;"><span style="font-family:arial;font-size:14px;">&nbsp{{ patient.birthday }}</span></td>
-                    {% endif %}
-                    {% if address != null %}
-                        <td style="float: left;  width:300px; height: 22px;"><span style="font-family:arial;font-size:14px;">&nbsp{{ patient.address }}</span></td>
-                    {% endif %}
                 </tr>
             {% endfor %}
 
