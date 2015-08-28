@@ -103,5 +103,9 @@ _pilar_gamboa_admin_results:
     prefix:   /admin
 
 _pilar_gamboa_admin_patiens_report:
+    pattern:  /reports/reportList/
+    defaults: { _controller: TecnotekAsiloBundle:Admin:reportList }
+
+_pilar_gamboa_admin_patiens_catalog_report:
     pattern:  /reports/reportListCatalog/
     defaults: { _controller: TecnotekAsiloBundle:Admin:reportListCatalog }

@@ -42,6 +42,7 @@ reports: Reportes
 results: Resultados
 cognitive.activities: Actividades Cognitivas
 patiens.list: Listados de Pacientes
+patiens.list.catalog: Listados por Actividad
 
 # Actions
 actions: Acciones
@@ -269,4 +270,9 @@ validation.only.digits: Este campo sólo puede contener dígitos
 label.print: Imprimir
 label.report.id: Identificación
 label.report.name: Nombre
+label.include.in.report: Incluir
+label.gender: Género
+label.address: Dirección
+label.birthday: Fecha de Nacimiento
+label.generate: Generar
 

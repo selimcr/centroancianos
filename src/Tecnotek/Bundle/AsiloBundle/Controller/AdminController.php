@@ -34,6 +34,44 @@ class AdminController extends Controller
      * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
+    public function reportListAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $entity = $em->getRepository("TecnotekAsiloBundle:Patient")->getPatients();
+
+        $results = array();
+
+        $request = $this->get('request')->request;
+        $gender = $request->get('gender');
+        $address = $request->get('address');
+        $birthday = $request->get('birthday');
+
+        $translator = $this->get('translator');
+
+        foreach($entity as $patient){
+
+            if($patient->getBirthdate()!= null){
+                $birthdaypatient= date_format($patient->getBirthdate(), 'Y-m-d');
+            } else $birthdaypatient="";
+
+            if($patient->getGender()==1){
+                $genderpatient = 'Masc';
+            } else $genderpatient = 'Fem';
+
+
+            array_push($results, array('id' => $patient->getDocumentId(),
+                'name' => ($patient->getFirstName().' '.$patient->getLastName()),
+                'gender' => $genderpatient, 'address' => $patient->getAddress(), 'birthday' => $birthdaypatient));
+        }
+
+        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list.html.twig', array('entities' => $results, 'gender' => $gender, 'address' => $address, 'birthday' => $birthday));
+    }
+
+    /**
+     * @Route("/", name="_admin_patiens_catalog_report")
+     * @Security("is_granted('ROLE_ADMIN')")
+     * @Template()
+     */
     public function reportListCatalogAction(){
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -41,13 +79,26 @@ class AdminController extends Controller
 
         $results = array();
 
+        $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->find($activityTypeId);
+
         $translator = $this->get('translator');
 
         foreach($entity as $patient){
+
+            if($patient->getBirthdate()!= null){
+                $birthdaypatient= date_format($patient->getBirthdate(), 'Y-m-d');
+            } else $birthdaypatient="";
+
+            if($patient->getGender()==1){
+                $genderpatient = 'Masc';
+            } else $genderpatient = 'Fem';
+
+
             array_push($results, array('id' => $patient->getDocumentId(),
-                'name' => ($patient->getFirstName().' '.$patient->getLastName())));
+                'name' => ($patient->getFirstName().' '.$patient->getLastName()),
+                'gender' => $genderpatient, 'address' => $patient->getAddress(), 'birthday' => $birthdaypatient));
         }
 
-        return $this->render('TecnotekAsiloBundle:Admin:Reports/report_list_catalog.html.twig', array('entities' => $results));
+        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list_catalog.html.twig', array('entities' => $results, 'activityType'   => $activityType));
     }
 }
