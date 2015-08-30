@@ -6,6 +6,8 @@
     <script src="{{ asset('admin/js/jquery.printElement.min.js') }}"></script>
     <script type="text/javascript">
         Tecnotek.module = "reports";
+        Tecnotek.UI.urls["loadGroupsOfActivity"] = "{{ path('_pilar_gamboa_admin_load_group_of_activity')}}";
+        Tecnotek.UI.urls["loadGroupsOfPatients"] = "{{ path('_pilar_gamboa_admin_load_group_of_patients')}}";
     </script>
 {% endblock js %}
 
@@ -20,11 +22,21 @@
             </ol>
         </div>
     </div>
-    <div id="activitySelect" class="left">
-        <select id="period" name="period" style="width: 150px;">
+    <div id="activitySelects" class="left">
+        <!-- <select id="activityTypeId" name="activityTypeId" style="width: 150px;">
             {% for activity in entities %}
                 <option value="{{ activity.id }}">{{activity.name}}</option>
             {% endfor %}
+        </select>-->
+        <select id="activityTypeId" name="activityTypeId" style="width: 150px;">
+            <option value="-1">{%trans%}Seleccione Tipo{%endtrans%}</option>
+            <option value="Sport">{%trans%}sports{%endtrans%}</option>
+            <option value="Dance">{%trans%}dance{%endtrans%}</option>
+            <option value="Manuality">{%trans%}manuality{%endtrans%}</option>
+            <option value="EntertainmentActivity">{%trans%}entertainmentActivity{%endtrans%}</option>
+        </select>
+
+        <select id="activitiesOptions" name="activitiesOptions" style="width: 150px;">
         </select>
     </div>
     <hr>
@@ -34,7 +46,7 @@
     </div>
     </br>
     <div id="report" style="margin-top: 25px; width: 950px;">
-        <table border="1" class="table table-striped table-bordered table-hover">
+        <table border="1" id="patientsTable" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="float: left;  width:120px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.report.id{%endtrans%}</span></td>
                 <td style="float: left;  width:300px; height: 22px;"><span style="font-family:arial;font-size:14px;">{%trans%}label.report.name{%endtrans%}</span></td>
