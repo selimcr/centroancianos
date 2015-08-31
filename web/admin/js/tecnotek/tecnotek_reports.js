@@ -81,6 +81,10 @@ Tecnotek.Reports = {
             //$('#activitiesOptions').children().remove();
             $('#patientsTable').empty();
             $('#patientsTable').append('<tr><td style="float: left;  width:120px;">Identificación</td><td style="float: left;  width:300px;">Nombre</td></tr>');
+            $('#activityLabel').empty();
+            $('#activityTypeLabel').empty();
+            $('#activityLabel').append($('#activityTypeId :selected').text());
+            $('#activityTypeLabel').append($('#activitiesOptions :selected').text());
             //$('#tableContainer').hide();
             console.debug("Ids: " + $entity +"- " + $activityId);
             Tecnotek.ajaxCall(Tecnotek.UI.urls["loadGroupsOfPatients"],

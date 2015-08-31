@@ -6,7 +6,7 @@ services: Servicios
 about.us: Quiénes Somos
 admin.site: Sitio Administrativo
 
-main.title: Centro de Ancianos Pilar Gamboa
+main.title: Centro Diurno Pilar Gamboa
 main.msg: Nuestra institución se especializa en la atención del Adulto Mayor, prestando servicios que les garanticen mantener y mejorar su capacidad física, mental, emocional, social y espíritual, que les permita llevar una buena calidad de vida, haciéndolos sentir libres e independientes en esta etapa de sus vidas.
 at.your.service: Estamos Para Servirle
 services.basics: Servicios Básicos
@@ -41,7 +41,7 @@ forms: Mantenimientos
 reports: Reportes
 results: Resultados
 cognitive.activities: Actividades Cognitivas
-patiens.list: Listados de Pacientes
+patiens.list: Listados de Beneficiarios
 patiens.list.catalog: Listados por Actividad
 
 # Actions
@@ -161,15 +161,15 @@ writing.delete.success: La escritura fue eliminado correctamente
 confirm.writing.delete: ¿Está seguro que desea eliminar esta escritura?
 
 # Patients
-patients: Pacientes
+patients: Beneficiarios
 patient.main.info: Información Principal
 patient.birthdate.note: Ingrese la fecha de nacimiento con el formato MM/dd/YYYY
 patient.admissionDate.note: Ingrese la fecha de ingreso con el formato MM/dd/YYYY
-create.patient: Crear Paciente
-patient: Paciente
+create.patient: Crear Beneficiario
+patient: Beneficiario
 
 # Patients Pentions
-patients.pentions: Pensiones de Pacientes
+patients.pentions: Pensiones de Beneficiarios
 confirm.patient.pention.delete: ¿Está seguro que desea eliminar esta Pensión?
 patient.pention.delete.success: La Pensión fue eliminada correctamente
 edit.patients.pentions: Editar Pensión
@@ -185,7 +185,7 @@ pention.delete.success: La pensión fue eliminada correctamente
 confirm.pention.delete: ¿Está seguro que desea eliminar esta pensión?
 add.pention: Agregar Pensión
 add.pention.success: La pensión fue agregada correctamente
-remove.pention: ¿Está seguro que desea eliminar esta pensión del paciente?
+remove.pention: ¿Está seguro que desea eliminar esta pensión del beneficiario?
 remove.pention.sucess: La pensión fue eliminada correctamente
 
 
@@ -275,4 +275,6 @@ label.gender: Género
 label.address: Dirección
 label.birthday: Fecha de Nacimiento
 label.generate: Generar
+label.report.list: Reporte de Beneficiaros
+label.report.list.catalog: Reporte de Beneficiaros en actividad.
 
