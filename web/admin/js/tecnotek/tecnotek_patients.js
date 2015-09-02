@@ -1,6 +1,122 @@
 var Tecnotek = Tecnotek || {};
 
 Tecnotek.Patients = {
+    Graduate: {
+        List: {
+            operateFormatter: function (value, row, index) {
+                return [
+                    '<a class="edit" href="' + Tecnotek.UI.urls['edit-patient'].replace("xxx", row.id) + '" title="Editar">',
+                    '<i class="glyphicon glyphicon-edit"></i>',
+                    '</a>',
+                    '<a class="graduate" href="#" title="Readmitir">',
+                    '<i class="glyphicon glyphicon-upload"></i>',
+                    '</a>'
+                ].join('');
+            },
+            operateEvents: {
+                'click .like': function (e, value, row, index) {
+                    alert('You click like action, row: ' + JSON.stringify(row));
+                },
+                'click .graduate': function (e, value, row, index) {
+                    if (Tecnotek.showConfirmationQuestion(Tecnotek.UI.translates['confirm-graduate'])) {
+                        Tecnotek.showPleaseWait();
+                        var url = Tecnotek.UI.urls['graduate-patient'];
+                        url = url.replace('xid', row.id);
+                        Tecnotek.ajaxCall(url, {
+                            },
+                            function (data) {
+                                Tecnotek.hidePleaseWait();
+                                if (data.error) {
+                                    Tecnotek.showErrorMessage(data.msg);
+                                } else {
+                                    $("#patients-list").bootstrapTable('refresh');
+                                    Tecnotek.showInfoMessage(data.msg);
+                                }
+                            }, function () {
+                                Tecnotek.hidePleaseWait();
+                            }, true);
+                    }
+                },
+                'click .delete': function (e, value, row, index) {
+                    if (Tecnotek.showConfirmationQuestion(Tecnotek.UI.translates['confirm-delete'])) {
+                        Tecnotek.ajaxCall(Tecnotek.UI.urls['delete-sport'], {
+                                id: row.id
+                            },
+                            function (data) {
+                                if (data.error) {
+                                    Tecnotek.showErrorMessage(data.msg);
+                                } else {
+                                    $("#sports-list").bootstrapTable('refresh');
+                                    Tecnotek.showInfoMessage(data.msg);
+                                }
+                            }, function () {
+                            }, true);
+                    }
+                },
+                'click .edit': function (e, value, row, index) {
+
+                }
+            },
+            init: function () {
+                $("#btn-new").click(function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $("#name").val("");
+                    Tecnotek.UI.vars["sport_id"] = 0;
+                    $("#panel-sport-title").html($(this).attr("title"));
+                    $('#form-sport').data('bootstrapValidator').resetForm(true);
+                    $("#panel-sport").removeClass("hidden");
+                });
+
+                $("#btn-cancel").click(function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    $("#panel-sport").addClass("hidden");
+                    $('#form-sport').data('bootstrapValidator').resetForm(true);
+                });
+
+                $('#form-sport').bootstrapValidator({
+                    excluded: ':disabled',
+                    message: Tecnotek.UI.translates['invalid.value'],
+                    feedbackIcons: {
+                        valid: 'glyphicon glyphicon-ok',
+                        invalid: 'glyphicon glyphicon-remove',
+                        validating: 'glyphicon glyphicon-refresh'
+                    },
+                    onSuccess: function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $name = $("#name").val();
+                        Tecnotek.ajaxCall(Tecnotek.UI.urls['save-sport'], {
+                                id: Tecnotek.UI.vars["sport_id"],
+                                name: $name
+                            },
+                            function (data) {
+                                if (data.error) {
+                                    Tecnotek.showErrorMessage(data.msg);
+                                } else {
+                                    $("#panel-sport").addClass("hidden");
+                                    $('#form-sport').data('bootstrapValidator').resetForm(true);
+                                    $("#sports-list").bootstrapTable('refresh');
+                                    Tecnotek.showInfoMessage(data.msg);
+                                }
+                            }, function () {
+                            }, true);
+                        return false;
+                    },
+                    fields: {
+                        'name': {
+                            validators: {
+                                notEmpty: {
+                                    message: Tecnotek.UI.translates['field.not.empty']
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    },
     Edit: {
         amountFormatter: function (value) {
             return '<div  style="color:#4f94c6">' +
@@ -242,22 +358,41 @@ Tecnotek.Patients = {
                 $("#panel-add-pention").removeClass("hidden");
             }
         }
-
     },
     List: {
         operateFormatter: function (value, row, index) {
             return [
                 '<a class="edit" href="' + Tecnotek.UI.urls['edit-patient'].replace("xxx", row.id) + '" title="Editar">',
                 '<i class="glyphicon glyphicon-edit"></i>',
+                '</a>',
+                '<a class="graduate" href="#" title="Egresar">',
+                '<i class="glyphicon glyphicon-download"></i>',
                 '</a>'
-                //'<a class="delete" href="#" title="Eliminar">',
-                //'<i class="glyphicon glyphicon-remove"></i>',
-                ///'</a>'
             ].join('');
         },
         operateEvents: {
             'click .like': function (e, value, row, index) {
                 alert('You click like action, row: ' + JSON.stringify(row));
+            },
+            'click .graduate': function (e, value, row, index) {
+                if (Tecnotek.showConfirmationQuestion(Tecnotek.UI.translates['confirm-graduate'])) {
+                    Tecnotek.showPleaseWait();
+                    var url = Tecnotek.UI.urls['graduate-patient'];
+                    url = url.replace('xid', row.id);
+                    Tecnotek.ajaxCall(url, {
+                        },
+                        function (data) {
+                            Tecnotek.hidePleaseWait();
+                            if (data.error) {
+                                Tecnotek.showErrorMessage(data.msg);
+                            } else {
+                                $("#patients-list").bootstrapTable('refresh');
+                                Tecnotek.showInfoMessage(data.msg);
+                            }
+                        }, function () {
+                            Tecnotek.hidePleaseWait();
+                        }, true);
+                }
             },
             'click .delete': function (e, value, row, index) {
                 if (Tecnotek.showConfirmationQuestion(Tecnotek.UI.translates['confirm-delete'])) {
@@ -276,12 +411,7 @@ Tecnotek.Patients = {
                 }
             },
             'click .edit': function (e, value, row, index) {
-                $("#panel-sport").addClass("hidden");
-                Tecnotek.UI.vars["sport_id"] = row.id;
-                $('#form-sport').data('bootstrapValidator').resetForm(true);
-                $("#name").val(row.name);
-                $("#panel-sport-title").html(Tecnotek.UI.translates["edit-sport"]);
-                $("#panel-sport").removeClass("hidden");
+
             }
         },
         init: function () {

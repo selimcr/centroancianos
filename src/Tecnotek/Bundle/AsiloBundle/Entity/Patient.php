@@ -140,6 +140,11 @@ class Patient
     private $isDeleted;
 
     /**
+     * @ORM\Column(name="is_graduate", type="boolean")
+     */
+    private $isGraduate;
+
+    /**
      * @ORM\OneToMany(targetEntity="PatientPention", mappedBy="patient")
      */
     private $pentions;
@@ -170,8 +175,8 @@ class Patient
     }
 
     /**
-     * @return mixed
-     */
+ * @return mixed
+ */
     public function getIsDeleted()
     {
         return $this->isDeleted;
@@ -183,6 +188,16 @@ class Patient
     public function setIsDeleted($isDeleted)
     {
         $this->isDeleted = $isDeleted;
+    }
+
+    public function getIsGraduate()
+    {
+        return $this->isGraduate;
+    }
+
+    public function setIsGraduate($isGraduate)
+    {
+        $this->isGraduate = $isGraduate;
     }
 
     /**

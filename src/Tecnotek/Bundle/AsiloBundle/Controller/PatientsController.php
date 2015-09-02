@@ -13,6 +13,7 @@ use Tecnotek\Bundle\AsiloBundle\Entity\Patient;
 use Tecnotek\Bundle\AsiloBundle\Entity\PatientPention;
 use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
 use Tecnotek\Bundle\AsiloBundle\Form\PatientForm;
+use Tecnotek\Bundle\AsiloBundle\Repository\PatientRepository;
 
 class PatientsController extends Controller
 {
@@ -21,8 +22,90 @@ class PatientsController extends Controller
      * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
-    public function sportsAction() {
+    public function listAction() {
         return $this->render('TecnotekAsiloBundle:Admin:patients.html.twig');
+    }
+
+    /**
+     * @Route("/patients/graduate", name="_admin_graduate_patients")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
+     * @Template()
+     */
+    public function graduateListAction() {
+        return $this->render('TecnotekAsiloBundle:Admin:patients_graduate.html.twig');
+    }
+
+    /**
+     * Return a List of Patients paginated for Bootstrap Table
+     *
+     * @Route("/patients/graduate/paginatedList", name="_patients_graduate_paginated_list")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
+     * @Template()
+     */
+    public function paginatedGraduateListAction() {
+        $logger = $this->get('logger');
+        if ($this->get('request')->isXmlHttpRequest())// Is the request an ajax one?
+        {
+            try {
+                //Get parameters
+                $request = $this->get('request');
+                $limit = $request->get('limit');
+                $offset = $request->get('offset');
+                $order = $request->get('order');
+                $search = $request->get('search');
+                $sort = $request->get('sort');
+
+                $em = $this->getDoctrine()->getManager();
+                $paginator = $em->getRepository("TecnotekAsiloBundle:Patient")
+                    ->getPageWithFilter($offset, $limit, $search, $sort, $order, PatientRepository::GRADUATE);
+
+                $results = array();
+                $patient = new Patient();
+                foreach($paginator as $patient){
+                    //$patient = new Patient();
+                    array_push($results, array(
+                        'id' => $patient->getId(),
+                        'lastName' => $patient->getLastName() . " " . $patient->getSecondSurname() . ", " . $patient->getFirstName(),
+                        'birthdate' => ($patient->getBirthdate() != null)? $patient->getBirthdate()->format('d/m/Y'):"-",
+                        'documentId' => $patient->getDocumentId(),
+                    ));
+                }
+                return new Response(json_encode(array('total'   => count($paginator),
+                    'rows'    => $results)));
+            }
+            catch (Exception $e) {
+                $info = toString($e);
+                $logger->err('Patient::paginatedListAction [' . $info . "]");
+                return new Response(json_encode(array('error' => true, 'message' => $info)));
+            }
+        }// endif this is an ajax request
+        else
+        {
+            return new Response("<b>Not an ajax call!!!" . "</b>");
+        }
+    }
+
+    /**
+     * @Route("/patients/{id}/reenter", name="_patients_reenter")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
+     * @Template()
+     */
+    public function reenterAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $patient = $em->getRepository("TecnotekAsiloBundle:Patient")->find($id);
+        $translator = $this->get("translator");
+        if( isset($patient) && !$patient->getIsDeleted() ) {
+            $patient->setIsGraduate(false);
+            $em->persist($patient);
+            $em->flush();
+            return new Response(json_encode(array(
+                'error' => false,
+                'msg' => $translator->trans('patient.reenter.success'))));
+        } else { // If not found, render the list
+            return new Response(json_encode(array(
+                'error' => false,
+                'msg' => $translator->trans('patient.reenter.fail'))));
+        }
     }
 
     /**
@@ -93,7 +176,7 @@ class PatientsController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 $paginator = $em->getRepository("TecnotekAsiloBundle:Patient")
-                    ->getPageWithFilter($offset, $limit, $search, $sort, $order);
+                    ->getPageWithFilter($offset, $limit, $search, $sort, $order, PatientRepository::NO_GRADUATE);
 
                 $results = array();
                 $patient = new Patient();
@@ -141,6 +224,29 @@ class PatientsController extends Controller
                     'pentions'  => $pentions));
         } else { // If not found, render the list
             return $this->redirect($this->generateUrl("_admin_patients"));
+        }
+    }
+
+    /**
+     * @Route("/patients/{id}/graduate", name="_patients_graduate")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
+     * @Template()
+     */
+    public function graduateAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $patient = $em->getRepository("TecnotekAsiloBundle:Patient")->find($id);
+        $translator = $this->get("translator");
+        if( isset($patient) && !$patient->getIsDeleted() ) {
+            $patient->setIsGraduate(true);
+            $em->persist($patient);
+            $em->flush();
+            return new Response(json_encode(array(
+                'error' => false,
+                'msg' => $translator->trans('patient.graduate.success'))));
+        } else { // If not found, render the list
+            return new Response(json_encode(array(
+                'error' => false,
+                'msg' => $translator->trans('patient.graduate.fail'))));
         }
     }
 

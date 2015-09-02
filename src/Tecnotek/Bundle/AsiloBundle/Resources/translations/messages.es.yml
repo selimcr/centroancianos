@@ -108,6 +108,14 @@ patient.birthdate.note: Ingrese la fecha de nacimiento con el formato MM/dd/YYYY
 patient.admissionDate.note: Ingrese la fecha de ingreso con el formato MM/dd/YYYY
 create.patient: Crear Beneficiario
 patient: Beneficiario
+confirm.graduate: ¿Está seguro que desea egresar a este Beneficiario(a)? Despúes de hacerlo no aparecerá en esta lista y podrá encontrarlo en la lista de egresados.
+patient.graduate.fail: No fue posible egresar al beneficiario
+patient.graduate.success: El beneficiario fue egresado correctamente, para revisar su información vaya a la lista de egresados
+Graduate List: Lista de Egresados
+patients.graduate: Beneficiarios Egresados
+confirm.readmit: ¿Está seguro que desea reingresar a este Beneficiario(a)? Despúes de hacerlo no aparecerá en esta lista y podrá encontrarlo en la lista de beneficiaros regulares.
+patient.reenter.fail: No fue posible reingresar al beneficiario
+patient.reenter.success: El beneficiario fue reingresado correctamente, para revisar su información vaya a la lista de beneficiarios regulares
 
 # Patients Pentions
 patients.pentions: Pensiones de Beneficiarios

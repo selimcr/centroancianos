@@ -12,9 +12,24 @@ use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
  */
 class PatientRepository extends GenericRepository {
 
-    public function getPageWithFilter($offset, $limit, $search, $sort, $order ) {
+    const NO_GRADUATE = 1;
+    const GRADUATE = 2;
+    const BOTH_GRADUATE = 3;
+
+    public function getPageWithFilter($offset, $limit, $search, $sort, $order, $graduateStatus ) {
         $dql = "SELECT s FROM TecnotekAsiloBundle:Patient s";
-        $dql .= ($search == "")? "":" WHERE s.isDeleted = false AND s.firstName LIKE :search OR s.lastName LIKE :search OR s.secondSurname LIKE :search";
+        $dql .= " WHERE s.isDeleted = false";
+        switch($graduateStatus) {
+            case PatientRepository::NO_GRADUATE:
+                $dql .= " AND s.isGraduate = false";
+                break;
+            case PatientRepository::GRADUATE:
+                $dql .= " AND s.isGraduate = true";
+                break;
+            default: break;
+        }
+        $dql .= "";
+        $dql .= ($search == "")? "":" AND (s.firstName LIKE :search OR s.lastName LIKE :search OR s.secondSurname LIKE :search)";
         $dql .= ($sort == "")? "":" order by s." . $sort . " " . $order;
 
         $query = $this->getEntityManager()->createQuery($dql)
