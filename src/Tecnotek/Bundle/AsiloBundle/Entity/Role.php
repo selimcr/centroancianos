@@ -39,41 +39,12 @@ class Role implements RoleInterface
         $this->users = new ArrayCollection();
     }
 
-    public function getId(){
-        return $this->id;
-    }
-
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
-
     /**
      * @see RoleInterface
      */
     public function getRole()
     {
         return $this->role;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setUsers($users)
-    {
-        $this->users = $users;
-    }
-
-    public function getUsers()
-    {
-        return $this->users;
     }
 }
 ?>

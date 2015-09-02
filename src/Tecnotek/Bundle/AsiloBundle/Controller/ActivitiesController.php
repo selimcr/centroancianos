@@ -21,7 +21,7 @@ class ActivitiesController extends Controller
      * Return a List of Patients paginated for Bootstrap Table
      *
      * @Route("/activities/types/{typeId}/{gender}/form", name="_activity_get_form")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function getActivityFormAction($typeId, $gender)
@@ -45,7 +45,7 @@ class ActivitiesController extends Controller
      * Return the activity object to render the items
      *
      * @Route("/activities/{id}/{patientId}/items", name="_activity_get_items")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function getActivityAction($id, $patientId)
@@ -85,6 +85,7 @@ class ActivitiesController extends Controller
      * Delete a Sport
      *
      * @Route("/activities/savePacientItem", name="_patients_save_item")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function savePacientItemAction() {

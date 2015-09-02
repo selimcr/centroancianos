@@ -9,12 +9,8 @@ use Tecnotek\Bundle\AsiloBundle\Entity\PatientItem;
 /**
  *
  */
-class PatientItemRepository extends EntityRepository
+class PatientItemRepository extends GenericRepository
 {
-
-    public function supportsClass($class) {
-        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
-    }
 
     public function loadItemsByPatientAndActivity($patientId, $activityId) {
         $q = $this

@@ -50,7 +50,8 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $encoder = $this->container
             ->get('security.encoder_factory')
             ->getEncoder($admin);
-        $admin->setUsername('administrador')->setPassword($encoder->encodePassword('p1l4rg4mb04', $admin->getSalt()))
+        $admin->setUsername('administrador')->setEmail('admin@tecnotek.com')
+            ->setPassword($encoder->encodePassword('p1l4rg4mb04', $admin->getSalt()))
             ->setName("Administrator")->setLastname("Site")->setCellPhone("");
         $admin->getUserRoles()->add($roleAdmin);
         $manager->persist($admin);

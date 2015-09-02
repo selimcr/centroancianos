@@ -10,7 +10,7 @@ use Tecnotek\Bundle\AsiloBundle\Util\Constants;
 
 /**
  * @ORM\Table(name="tecnotek_activity_items")
- * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\ActivityItemRepository")
+ * @ORM\Entity(repositoryClass="Tecnotek\Bundle\AsiloBundle\Repository\GenericRepository")
  * @UniqueEntity("title")
  */
 class ActivityItem

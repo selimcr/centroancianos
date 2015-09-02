@@ -10,13 +10,7 @@ use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
 /**
  *
  */
-class PatientPentionRepository extends EntityRepository
-{
-
-    public function supportsClass($class)
-    {
-        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
-    }
+class PatientPentionRepository extends GenericRepository {
 
     public function getPageWithFilter($offset, $limit, $search, $sort, $order ){
         $dql = "SELECT s FROM TecnotekAsiloBundle:PatientPention s JOIN s.patient p";

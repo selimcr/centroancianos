@@ -56,109 +56,50 @@ add: Agregar
 
 saving.success: Se ha guardado la información correctamente
 
-# Sports
+# Catalogs
+catalog.save.success: Se ha completado el guardado correctamente
+confirm.catalog.delete: ¿Está seguro que desea eliminar este elemento del catálogo?
+catalog.delete.success: El elemento fue eliminado correctamente
+dance: Baile
+dances: Bailes
+Dances: Bailes
+sport: Deporte
 sports: Deportes
-create.sport: Crear Deporte
-edit.sport: Editar Deporte
-sport.save.success: El deporte fue guardado correctamente
-sport.delete.success: El deporte fue eliminado correctamente
-confirm.sport.delete: ¿Está seguro que desea eliminar este deporte?
-
-# Dance
-dance: Bailes
-create.dance: Crear Baile
-edit.dance: Editar Baile
-dance.save.success: El baile fue guardado correctamente
-dance.delete.success: El baile fue eliminado correctamente
-confirm.dance.delete: ¿Está seguro que desea eliminar este baile?
-
-# Disease
-disease: Enfermedades
-create.disease: Crear Enfermedad
-edit.disease: Editar Enfermedad
-disease.save.success: La enfermedad fue guardado correctamente
-disease.delete.success: La enfermedad fue eliminado correctamente
-confirm.disease.delete: ¿Está seguro que desea eliminar esta enfermedad?
-
-# EntertainmentActivity
-entertainmentActivity: Actividades
-create.entertainmentActivity: Crear Actividad
-edit.entertainmentActivity: Editar Actividad
-entertainmentActivity.save.success: La actividad fue guardado correctamente
-entertainmentActivity.delete.success: La actividad fue eliminado correctamente
-confirm.entertainmentActivity.delete: ¿Está seguro que desea eliminar esta actividad?
-
-# Instrument
+Sports: Deportes
+disease: Enfermedad
+diseases: Enfermedades
+Diseases: Enfermedades
+entertainmentActivity: Actividad
+entertainmentActivities: Actividades
+entertainmentActivitys: Actividades
 instrument: Instrumento
-create.instrument: Crear Instrumento
-edit.instrument: Editar Instrumento
-instrument.save.success: El Instrumento fue guardado correctamente
-instrument.delete.success: El Instrumento fue eliminado correctamente
-confirm.instrument.delete: ¿Está seguro que desea eliminar este Instrumento?
-
-# Manuality
+instruments: Instrumentos
+Instruments: Instrumentos
 manuality: Manualidad
-create.manuality: Crear Manualidad
-edit.manuality: Editar Manualidad
-manuality.save.success: La manualidad fue guardado correctamente
-manuality.delete.success: La manualidad fue eliminado correctamente
-confirm.manuality.delete: ¿Está seguro que desea eliminar esta manualidad?
-
-# Music
-music: Musica
-create.music: Crear Musica
-edit.music: Editar Musica
-music.save.success: La música fue guardado correctamente
-music.delete.success: La música fue eliminado correctamente
-confirm.music.delete: ¿Está seguro que desea eliminar esta música?
-
-# Reading
-reading: Lectura
-create.reading: Crear Lectura
-edit.reading: Editar Lectura
-reading.save.success: La lectura fue guardado correctamente
-reading.delete.success: La lectura fue eliminado correctamente
-confirm.reading.delete: ¿Está seguro que desea eliminar esta lectura?
-
-# Religion
+manualitys: Manualidades
+manualities: Manualidades
+Manualities: Manualidades
+music: Música
+musics: Estilos Musicales
+Musics: Estilos Musicales
 religion: Religion
-create.religion: Crear Religión
-edit.religion: Editar Religión
-religion.save.success: La religión fue guardado correctamente
-religion.delete.success: La religión fue eliminado correctamente
-confirm.religion.delete: ¿Está seguro que desea eliminar esta religión?
-
-# RoomGame
+religions: Religiones
+Religions: Religiones
+reading: Lectura
+readings: Lecturas
+Readings: Lecturas
 roomGame: Juego
-create.roomGame: Crear Juego
-edit.roomGame: Editar Juego
-roomGame.save.success: El juego fue guardado correctamente
-roomGame.delete.success: El juego fue eliminado correctamente
-confirm.roomGame.delete: ¿Está seguro que desea eliminar este juego?
-
-# SleepHabit
+roomGames: Juegos
+RoomGames: Juegos
 sleepHabit: Hábito
-create.sleepHabit: Crear Hábito
-edit.sleepHabit: Editar Hábito
-sleepHabit.save.success: El hábito fue guardado correctamente
-sleepHabit.delete.success: El hábito fue eliminado correctamente
-confirm.sleepHabit.delete: ¿Está seguro que desea eliminar este hábito?
-
-# SpiritualActivity
+sleepHabits: Hábitos
+SleepHabits: Hábitos de Sueño
 spiritualActivity: Actividad Espiritual
-create.spiritualActivity: Crear Actividad Espiritual
-edit.spiritualActivity: Editar Actividad Espiritual
-spiritualActivity.save.success: La Actividad Espiritual fue guardado correctamente
-spiritualActivity.delete.success: La Actividad Espiritual fue eliminado correctamente
-confirm.spiritualActivity.delete: ¿Está seguro que desea eliminar esta Actividad Espiritual?
-
-# Writing
+spiritualActivities: Actividades Espirituales
+spiritualActivitys: Actividades Espirituales
 writing: Escritura
-create.writing: Crear Escritura
-edit.writing: Editar Escritura
-writing.save.success: La escritura fue guardado correctamente
-writing.delete.success: La escritura fue eliminado correctamente
-confirm.writing.delete: ¿Está seguro que desea eliminar esta escritura?
+writings: Escrituras
+Writings: Escrituras
 
 # Patients
 patients: Pacientes
@@ -187,7 +128,6 @@ add.pention: Agregar Pensión
 add.pention.success: La pensión fue agregada correctamente
 remove.pention: ¿Está seguro que desea eliminar esta pensión del paciente?
 remove.pention.sucess: La pensión fue eliminada correctamente
-
 
 # Fields
 name: Nombre
@@ -220,6 +160,9 @@ women: Mujeres
 all: Todos
 total: Total
 participants: Participantes
+email: Correo Electrónico
+cellPhone: Teléfono
+active: Activo
 
 # Dashboard
 older.adults.age.ranges: Cantidad Adultos Mayores por Rango de Edades
@@ -235,18 +178,6 @@ aspectos.recreativos: Aspectos Recreativos
 spiritual.aspects: Aspectos Espirituales
 cognitivities.activities: Actividades Cognitivas
 basic.needs: Necesidades Básicas
-
-#Entities
-Sport: Deportes
-Reading: Lecturas
-Writing: Escrituras
-Manuality: Manualidades
-Music: Estilos Musicales
-Instrument: Instrumentos
-EntertainmentActivity: Actividades
-RoomGame: Juegos de Salón
-Dance: Estilos de Baile
-SleepHabit: Hábito de Sueño
 
 #Enums
 item.5.enum.option.1: Solo
@@ -276,3 +207,21 @@ label.address: Dirección
 label.birthday: Fecha de Nacimiento
 label.generate: Generar
 
+#Users
+users: Usuarios
+permissions: Permisos
+select.user.to.review.permissions: Seleccione un Usuario de la lista para administrar sus permisos
+menu.options: Opciones de Menú
+user.username.and.email.must.be.uniques: El nombre de usuario o el email ya se encuentran registrado, por favor intente cambiarlos y probar nuevamente
+save.menu.options: Guardar Opciones de Menú
+save.permissions: Guardar Permisos
+
+#Menu and Permissions Translations
+Patients: Beneficiarios
+List: Lista
+Results: Resultados
+Reports: Reportes
+Editar Patient: Editar Beneficiario
+Listado de Patients: Listado de Beneficiarios
+Pentions: Pensiones
+Editar Patient Actividades: Editar Beneficiario Actividades

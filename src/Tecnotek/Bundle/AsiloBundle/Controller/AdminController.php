@@ -15,8 +15,8 @@ use Tecnotek\Bundle\AsiloBundle\Entity\PatientItem;
 class AdminController extends Controller
 {
     /**
-     * @Route("/reports/reportListCatalog/", name="_admin_home")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Route("/", name="_admin_home")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function indexAction() {
@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     /**
      * @Route("/report/list", name="_admin_patiens_report")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function reportListAction(){
@@ -69,26 +69,21 @@ class AdminController extends Controller
 
     /**
      * @Route("/report/listcatalog", name="_admin_patiens_catalog_report")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function reportListCatalogAction(){
         $em = $this->getDoctrine()->getEntityManager();
-
-        //$entity = $em->getRepository("TecnotekAsiloBundle:Patient")->getPatients();
-
         $results = array();
         $resultsPatients = array();
-
         $activityType = $em->getRepository("TecnotekAsiloBundle:ActivityType")->getActivityTypes();
-
-        $translator = $this->get('translator');
-
         foreach($activityType as $activity){
-
             array_push($results, array('id' => $activity->getId(), 'name' => $activity->getName()));
         }
 
-        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list_catalog.html.twig', array('entities' => $results, 'patients'   => $resultsPatients));
+        return $this->render('TecnotekAsiloBundle:Admin:reports/report_list_catalog.html.twig',
+            array(
+                'entities' => $results,
+                'patients'   => $resultsPatients,));
     }
 }

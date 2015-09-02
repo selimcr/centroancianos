@@ -17,71 +17,6 @@ _pilar_gamboa_admin_patients:
     type:     annotation
     prefix:   /admin
 
-_pilar_gamboa_admin_sports:
-    resource: "@TecnotekAsiloBundle/Controller/SportsController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_dance:
-    resource: "@TecnotekAsiloBundle/Controller/DanceController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_disease:
-    resource: "@TecnotekAsiloBundle/Controller/DiseaseController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_entertainmentActivity:
-    resource: "@TecnotekAsiloBundle/Controller/EntertainmentActivityController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_instrument:
-    resource: "@TecnotekAsiloBundle/Controller/InstrumentController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_manuality:
-    resource: "@TecnotekAsiloBundle/Controller/ManualityController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_music:
-    resource: "@TecnotekAsiloBundle/Controller/MusicController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_religion:
-    resource: "@TecnotekAsiloBundle/Controller/ReligionController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_roomGame:
-    resource: "@TecnotekAsiloBundle/Controller/RoomGameController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_sleepHabit:
-    resource: "@TecnotekAsiloBundle/Controller/SleepHabitController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_reading:
-    resource: "@TecnotekAsiloBundle/Controller/ReadingController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_spiritualActivity:
-    resource: "@TecnotekAsiloBundle/Controller/SpiritualActivityController.php"
-    type:     annotation
-    prefix:   /admin
-
-_pilar_gamboa_admin_writing:
-    resource: "@TecnotekAsiloBundle/Controller/WritingController.php"
-    type:     annotation
-    prefix:   /admin
-
 _pilar_gamboa_admin_pentions:
     resource: "@TecnotekAsiloBundle/Controller/PentionsController.php"
     type:     annotation
@@ -102,6 +37,16 @@ _pilar_gamboa_admin_results:
     type:     annotation
     prefix:   /admin
 
+_pilar_gamboa_admin_catalogs:
+    resource: "@TecnotekAsiloBundle/Controller/CatalogController.php"
+    type:     annotation
+    prefix:   /admin
+
+_pilar_gamboa_admin_users:
+    resource: "@TecnotekAsiloBundle/Controller/UsersController.php"
+    type:     annotation
+    prefix:   /admin
+
 _pilar_gamboa_admin_patiens_report:
     pattern:  /reports/reportList/
     defaults: { _controller: TecnotekAsiloBundle:Admin:reportList }
@@ -109,3 +54,6 @@ _pilar_gamboa_admin_patiens_report:
 _pilar_gamboa_admin_patiens_catalog_report:
     pattern:  /reports/reportListCatalog/
     defaults: { _controller: TecnotekAsiloBundle:Admin:reportListCatalog }
+
+_admin_catalog_base:
+    pattern:  admin/catalog/

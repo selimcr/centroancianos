@@ -4943,3 +4943,6 @@ span.customSelect.changed {
 .glyphicon {margin-left: 5px;}
 .table-with-header thead {background-color: #eb8f00;}
 .table-with-header thead tr th {color: #fff !important; font-weight: bold;}
+
+.margin-botton-25 {margin-bottom: 25px;}
+input[type="checkbox"].form-control { height: 24px;  width: 10%;}

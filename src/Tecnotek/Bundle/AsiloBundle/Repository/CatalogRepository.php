@@ -12,31 +12,8 @@ use Tecnotek\Bundle\AsiloBundle\Util\Enum\Item6Enum;
 /**
  *
  */
-class CatalogRepository extends EntityRepository
+class CatalogRepository extends GenericRepository
 {
-
-    public function supportsClass($class)
-    {
-        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
-    }
-
-    public function getPageWithFilter($offset, $limit, $search, $sort, $order ){
-        $dql = "SELECT d FROM " . $this->getEntityName() . " d";
-        $dql .= ($search == "")? "":" WHERE d.name LIKE :search";
-        $dql .= ($sort == "")? "":" order by d." . $sort . " " . $order;
-
-        $query = $this->getEntityManager()->createQuery($dql)
-            ->setFirstResult($offset)
-            ->setMaxResults($limit);
-
-        if($search != ""){
-            $query->setParameter('search', "%" . $search . "%");
-        }
-
-        $paginator = new Paginator($query, $fetchJoinCollection = false);
-
-        return $paginator;
-    }
 
     public function getYesNoData($itemId, $totalMen, $totalWomen) {
         $sql = "select p.gender, pi.value, count(*) as 'counter'

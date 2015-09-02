@@ -10,13 +10,8 @@ use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
 /**
  *
  */
-class ActivityTypeRepository extends EntityRepository
+class ActivityTypeRepository extends GenericRepository
 {
-
-    public function supportsClass($class)
-    {
-        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
-    }
 
     public function getActivityTypes(){
         $dql = "SELECT a FROM TecnotekAsiloBundle:ActivityType a";

@@ -69,11 +69,23 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="ActionMenu", inversedBy="users")
+     */
+    private $menuOptions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Permission", inversedBy="users")
+     */
+    private $permissions;
+
     public function __construct()
     {
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
         $this->roles = new ArrayCollection();
+        $this->menuOptions = new ArrayCollection();
+        $this->permissions = new ArrayCollection();
     }
 
     public function getId(){
@@ -98,7 +110,11 @@ class User implements UserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-        $this->email = $username;
+        return $this;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
         return $this;
     }
 
@@ -128,6 +144,43 @@ class User implements UserInterface, \Serializable
     {
         $this->password = $password;
         return $this;
+    }
+
+    public function getMenuOptionsAsArray() {
+        return $this->menuOptions->toArray();
+    }
+
+    public function getMenuOptions() {
+        return $this->menuOptions;
+    }
+
+    public function addMenuOption($actionMenu) {
+        $this->menuOptions->add($actionMenu);
+        return true;
+    }
+
+    public function removeMenuOption($entity) {
+        $this->menuOptions->removeElement($entity);
+        return null;
+    }
+
+    /** Permissions Methods ***/
+    public function getPermissionsAsArray() {
+        return $this->permissions->toArray();
+    }
+
+    public function getPermissions() {
+        return $this->permissions;
+    }
+
+    public function addPermission($permission) {
+        $this->permissions->add($permission);
+        return true;
+    }
+
+    public function removePermission($entity) {
+        $this->permissions->removeElement($entity);
+        return null;
     }
 
     /**
@@ -190,6 +243,10 @@ class User implements UserInterface, \Serializable
         //$this->password = sha1($this->password);
     }
 
+    public function getFullName() {
+        return $this->name . " " . $this->lastname;
+    }
+
     public function __toString(){
         return $this->username;
     }
@@ -225,5 +282,14 @@ class User implements UserInterface, \Serializable
     public function getCellPhone()
     {
         return $this->cellPhone;
+    }
+
+    public function isActive() {
+        return $this->isActive;
+    }
+
+    public function setIsActive($isActive) {
+        $this->isActive = $isActive;
+        return $this;
     }
 }

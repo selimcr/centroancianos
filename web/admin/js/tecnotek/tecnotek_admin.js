@@ -42,24 +42,14 @@ var Tecnotek = {
         if (module) {
             switch (module) {
                 case "reports": Tecnotek.Reports.List.init(); break;
-                case "sports-list": Tecnotek.Sports.List.init(); break;
-                case "dance-list": Tecnotek.Dance.List.init(); break;
-                case "disease-list": Tecnotek.Disease.List.init(); break;
-                case "entertainment-activity-list": Tecnotek.EntertainmentActivity.List.init(); break;
-                case "instrument-list": Tecnotek.Instrument.List.init(); break;
-                case "manuality-list": Tecnotek.Manuality.List.init(); break;
-                case "music-list": Tecnotek.Music.List.init(); break;
-                case "reading-list": Tecnotek.Reading.List.init(); break;
-                case "religion-list": Tecnotek.Religion.List.init(); break;
-                case "roomGame-list": Tecnotek.RoomGame.List.init(); break;
-                case "sleepHabit-list": Tecnotek.SleepHabit.List.init(); break;
-                case "spiritualActivity-list": Tecnotek.SpiritualActivity.List.init(); break;
-                case "writing-list": Tecnotek.Writing.List.init(); break;
                 case "pentions-list": Tecnotek.Pentions.List.init(); break;
                 case "patients-list": Tecnotek.Patients.List.init(); break;
                 case "patients-edit": Tecnotek.Patients.Edit.init(); break;
                 case "patients-pentions-list": Tecnotek.PatientsPentions.List.init(); break;
                 case "results": Tecnotek.Results.loadItemsResults(); break;
+                case "catalog-list": Tecnotek.Catalog.List.init(); break;
+                case "users-permissions": Tecnotek.Users.Permissions.init(); break;
+                case "users-list": Tecnotek.Users.List.init(); break;
                 default: break;
             }
         }
@@ -85,8 +75,12 @@ var Tecnotek = {
         } else if(path.indexOf("pentions")  > -1){
             $("#menu_pentions_item").addClass("active");
             $("#menu_forms_item").addClass("active");
-        } else
+        } else if (path.indexOf("catalog/")  > -1) {
             $("#menu_forms_item").addClass("active");
+        } else if (path.indexOf("users")  > -1) {
+            $("#menu_users_item").addClass("active");
+        }
+
     },
     ajaxCall:function (url, params, succedFunction, errorFunction) {
         var request = $.ajax({

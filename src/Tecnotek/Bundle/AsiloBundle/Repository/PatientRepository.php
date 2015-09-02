@@ -10,15 +10,9 @@ use Tecnotek\Bundle\AsiloBundle\Entity\Sport;
 /**
  *
  */
-class PatientRepository extends EntityRepository
-{
+class PatientRepository extends GenericRepository {
 
-    public function supportsClass($class)
-    {
-        return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
-    }
-
-    public function getPageWithFilter($offset, $limit, $search, $sort, $order ){
+    public function getPageWithFilter($offset, $limit, $search, $sort, $order ) {
         $dql = "SELECT s FROM TecnotekAsiloBundle:Patient s";
         $dql .= ($search == "")? "":" WHERE s.isDeleted = false AND s.firstName LIKE :search OR s.lastName LIKE :search OR s.secondSurname LIKE :search";
         $dql .= ($sort == "")? "":" order by s." . $sort . " " . $order;

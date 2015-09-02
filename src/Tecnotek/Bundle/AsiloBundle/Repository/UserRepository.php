@@ -3,6 +3,7 @@ namespace Tecnotek\Bundle\AsiloBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use Tecnotek\Bundle\AsiloBundle\Entity\User;
 
@@ -14,8 +15,60 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 /**
  *
  */
-class UserRepository extends EntityRepository implements UserProviderInterface
+class UserRepository extends CatalogRepository implements UserProviderInterface
 {
+
+    public function getEmployees() {
+        $q = $this
+            ->createQueryBuilder('u')
+            ->select('u, r')
+            ->leftJoin('u.roles', 'r')
+            ->where('r.role = :role')
+            ->setParameter('role', 'ROLE_EMPLOYEE')
+            ->getQuery();
+        $users = $q->getResult();
+        return $users;
+    }
+
+    public function getListWithFilter($offset, $limit, $search, $sort, $order, $myId ){
+        $dql = "SELECT d FROM " . $this->getEntityName() . " d WHERE d.id <> :myId";
+
+        $dql .= ($search == "")? "":" AND (d.name LIKE :search OR d.lastname LIKE :search OR d.username LIKE :search OR d.email LIKE :search)";
+        $dql .= ($sort == "")? "":" order by d." . $sort . " " . $order;
+
+        $query = $this->getEntityManager()->createQuery($dql)
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+        $query->setParameter('myId', $myId);
+        if($search != ""){
+            $query->setParameter('search', "%" . $search . "%");
+        }
+
+        $paginator = new Paginator($query, $fetchJoinCollection = false);
+
+        return $paginator;
+    }
+
+    public function checkUniqueUsernameAndEmail($username, $email, $userId) {
+        $q = $this
+            ->createQueryBuilder('u')
+            ->select('u, g')
+            ->leftJoin('u.roles', 'g')
+            ->where('u.id <> :userId AND (u.username = :username OR u.email = :email)')
+            ->setParameter('userId', $userId)
+            ->setParameter('username', $username)
+            ->setParameter('email', $email)
+            ->getQuery();
+
+        try {
+            // The Query::getSingleResult() method throws an exception
+            // if there is no record matching the criteria.
+            $user = $q->getSingleResult();
+            return false;
+        } catch (NoResultException $e) {
+            return true;
+        }
+    }
 
     public function loadUserByUsername($username)
     {

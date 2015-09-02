@@ -39,6 +39,10 @@
     <link href="{{ asset('admin/css/style-responsive.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin/css/xcharts.min.css') }}" rel=" stylesheet">
     <link href="{{ asset('admin/css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet">
+
+    {% block css %}
+    {% endblock %}
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
     <script src="{{ asset('admin/js/html5shiv.js') }}"></script>
@@ -100,76 +104,8 @@
                         <span>{{ 'dashboard'|trans }}</span>
                     </a>
                 </li>
-                <li id="menu_patients_item" class="sub-menu">
-                    <a href="#" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>{{ 'patients'|trans }}</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li id="menu_patients_item"><a class="" href="{{ path('_admin_patients') }}">{{ 'patients'|trans }}</a></li>
-                        <li id=""><a class="" href="{{ path('_admin_patients_pentions') }}">{{ 'pentions'|trans }}</a></li>
-                    </ul>
-                </li>
-                <li id="menu_forms_item" class="sub-menu">
-                    <a href="#" class="">
-                        <i class="icon_piechart"></i>
-                        <span>{{ 'results'|trans }}</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li id="menu_results_cognitive_activities">
-                            <a class="" href="{{ path('_admin_results_cognitive_activities') }}">
-                                {{ 'cognitive.activities'|trans }}</a>
-                        </li>
-                        <li id="menu_results_aspectos_recreativos">
-                            <a class="" href="{{ path('_admin_results_aspectos_recreativos') }}">
-                                {{ 'aspectos.recreativos'|trans }}</a>
-                        </li>
-                        <li id="menu_results_spiritual_aspects">
-                            <a class="" href="{{ path('_admin_results_aspectos_espirituales') }}">
-                                {{ 'spiritual.aspects'|trans }}</a>
-                        </li>
-                        <li id="menu_results_basic_needs">
-                            <a class="" href="{{ path('_admin_results_necesidades_basicas') }}">
-                                {{ 'basic.needs'|trans }}</a>
-                        </li>
-                    </ul>
-                </li>
-                <li id="menu_forms_item" class="sub-menu">
-                    <a href="#" class="">
-                        <i class="icon_documents"></i>
-                        <span>{{ 'reports'|trans }}</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li id="menu_report_list"><a class="" href="{{ path('_admin_patiens_report') }}">{{ 'patiens.list'|trans }}</a></li>
-                        <li id="menu_report_catalog"><a class="" href="{{ path('_admin_patiens_catalog_report') }}">{{ 'patiens.list.catalog'|trans }}</a></li>
-                    </ul>
-                </li>
-                <li id="menu_forms_item" class="sub-menu">
-                    <a href="#" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>{{ 'forms'|trans }}</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li id="menu_pentions_item"><a class="" href="{{ path('_admin_pentions') }}">{{ 'pentions'|trans }}</a></li>
-                        <li id="menu_sports_item"><a class="" href="{{ path('_admin_sports') }}">{{ 'sports'|trans }}</a></li>
-                        <li id="menu_dance_item"><a class="" href="{{ path('_admin_dance') }}">{{ 'dance'|trans }}</a></li>
-                        <li id="menu_disease_item"><a class="" href="{{ path('_admin_disease') }}">{{ 'disease'|trans }}</a></li>
-                        <li id="menu_entertainmentActivity_item"><a class="" href="{{ path('_admin_entertainmentActivity') }}">{{ 'entertainmentActivity'|trans }}</a></li>
-                        <li id="menu_instrument_item"><a class="" href="{{ path('_admin_instrument') }}">{{ 'instrument'|trans }}</a></li>
-                        <li id="menu_manuality_item"><a class="" href="{{ path('_admin_manuality') }}">{{ 'manuality'|trans }}</a></li>
-                        <li id="menu_music_item"><a class="" href="{{ path('_admin_music') }}">{{ 'music'|trans }}</a></li>
 
-                        <li id="menu_religion_item"><a class="" href="{{ path('_admin_religion') }}">{{ 'religion'|trans }}</a></li>
-                        <li id="menu_roomGame_item"><a class="" href="{{ path('_admin_roomGame') }}">{{ 'roomGame'|trans }}</a></li>
-                        <li id="menu_sleepHabit_item"><a class="" href="{{ path('_admin_sleepHabit') }}">{{ 'sleepHabit'|trans }}</a></li>
-                        <li id="menu_spiritualActivity_item"><a class="" href="{{ path('_admin_spiritualActivity') }}">{{ 'spiritualActivity'|trans }}</a></li>
-                        <li id="menu_writing_item"><a class="" href="{{ path('_admin_writing') }}">{{ 'writing'|trans }}</a></li>
-                    </ul>
-                </li>
+                {{ renderMenu()|raw }}
             </ul>
             <!-- sidebar menu end-->
         </div>

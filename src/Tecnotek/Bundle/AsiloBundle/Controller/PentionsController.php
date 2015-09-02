@@ -16,7 +16,7 @@ class PentionsController extends Controller
 {
     /**
      * @Route("/pentions", name="_admin_pentions")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function pentionsAction() {
@@ -27,6 +27,7 @@ class PentionsController extends Controller
      * Return a List of Sports paginated for Bootstrap Table
      *
      * @Route("/pentions/paginatedList", name="_pentions_paginated_list")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function paginatedListAction() {
@@ -73,6 +74,7 @@ class PentionsController extends Controller
      * Save or Update a Pention
      *
      * @Route("/pentions/save", name="_pentions_save")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function savePentionAction() {
@@ -120,6 +122,7 @@ class PentionsController extends Controller
      * Delete a Pention
      *
      * @Route("/pentions/delete", name="_pentions_delete")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function deletePentiontAction() {

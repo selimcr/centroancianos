@@ -18,7 +18,7 @@ class PatientsController extends Controller
 {
     /**
      * @Route("/patients", name="_admin_patients")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function sportsAction() {
@@ -27,7 +27,7 @@ class PatientsController extends Controller
 
     /**
      * @Route("/patients/create", name="_patientes_create")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function newAction() {
@@ -41,7 +41,7 @@ class PatientsController extends Controller
 
     /**
      * @Route("/patients/save", name="_patients_save")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function saveAction() {
@@ -75,7 +75,7 @@ class PatientsController extends Controller
      * Return a List of Patients paginated for Bootstrap Table
      *
      * @Route("/patients/paginatedList", name="_patients_paginated_list")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function paginatedListAction() {
@@ -123,7 +123,7 @@ class PatientsController extends Controller
 
     /**
      * @Route("/patients/{id}/edit", name="_patients_edit")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function editAction($id) {
@@ -146,7 +146,7 @@ class PatientsController extends Controller
 
     /**
      * @Route("/patients/update", name="_patients_update")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function updateAction()
@@ -199,6 +199,7 @@ class PatientsController extends Controller
      * Delete a Sport
      *
      * @Route("/patients/delete", name="_patients_delete")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function deletePatientAction() {
@@ -244,6 +245,7 @@ class PatientsController extends Controller
      * Save or Update an Association
      *
      * @Route("/patients/association/save", name="_patients_save_association")
+     * @Security("is_granted('ROLE_EMPLOYEE')")
      * @Template()
      */
     public function saveAssociationAction() {
