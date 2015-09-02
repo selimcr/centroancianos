@@ -149,5 +149,16 @@ class CatalogRepository extends GenericRepository
             default: return "";
         }
     }
+
+    public function getPatientsCatalog($entity, $activityId){
+        $sql = "SELECT p.document_id, p.first_name, p.last_name, p.gender FROM tecnotek_patients p, tecnotek_patient_items pi, tecnotek_activity_items ai";
+        $sql .= " WHERE p.id = pi.patient_id and ai.referencedEntity = '".$entity. "' and ai.id = pi.item_id and pi.value like '%[".$activityId."]%'";
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+
+        return $result;
+    }
 }
 ?>
